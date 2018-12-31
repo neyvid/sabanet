@@ -1,0 +1,458 @@
+body {
+    font-family: 'Far.Yekan' !important;
+    font-size: 24px;
+    height: 100%;
+    background-color: #ffffff !important;
+}
+
+a:hover {
+    text-decoration: none !important;;
+
+}
+
+a {
+    color: black !important;
+}
+
+ul {
+    list-style: none;
+}
+
+/********************************  Font   ********************************/
+@font-face {
+    font-family: 'Far.Yekan';
+    src: url('http://sabanet.com/fonts/Far_Yekan.eot');
+    src: local('☺'),
+    url('http://sabanet.com/fonts/Far_Yekan.woff') format('woff'),
+    url('http://sabanet.com/fonts/Far_Yekan.ttf') format('truetype'),
+    url('http://sabanet.com/fonts/Far_Yekan.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*********************************  For Show in Mobile Mode********************************/
+@media (max-width: 767px) {
+    .socialMediaIcons, .fastContact {
+        text-align: center !important;
+    }
+}
+
+/********************************  HomePage Css ********************************/
+
+/*--------------------Top Heade Css--------------------*/
+#topHead {
+    background-color: #262626;
+    height: auto;
+    padding: 5px 0;
+
+}
+
+.socialMediaIcons {
+    text-align: left;
+}
+
+.socialIcon {
+    margin-right: 5px;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+.fastContact {
+    color: white;
+    direction: rtl;
+
+}
+
+.fastContact > p {
+    padding: 5px 0;
+    margin: 0;
+    display: inline-block;
+}
+
+/*--------------------Top Menu Css--------------------*/
+#topMenu {
+    padding: 15px 0;
+    border-bottom: 1px solid gray;
+    box-shadow: 0px 2px 5px -3px #000;
+    background-color: #f8f9fa;
+}
+
+nav {
+    padding: 0;
+    float: right;
+    direction: rtl;
+}
+
+.dropdown-menu-custom {
+    min-width: 15rem !important;
+}
+
+/*--------------------Slider One Css--------------------*/
+.sliderOne {
+    margin-top: 2rem;
+}
+
+.rightSideOfSliderOne_content {
+    padding: 10px 5px !important;
+}
+
+/*--------------------First Content--------------------*/
+.firstContent {
+    margin-top: 40px;
+}
+
+.ourService {
+    direction: rtl;
+}
+
+.ourService > img {
+    width: 80px;
+    height: 80px;
+}
+
+.ourService > h3 {
+    margin-top: 10px;
+    direction: rtl;
+    font-size: 1.3em;
+    position: relative;
+}
+
+.ourService > h3:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -10px;
+    height: 1px;
+    background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#a4a4a4), to(transparent));
+    background: -o-linear-gradient(left, transparent, #a4a4a4, transparent);
+    background: linear-gradient(90deg, transparent, #a4a4a4, transparent);
+    z-index: 10;
+}
+
+.ourService > p {
+    margin-top: 35px;
+
+}
+
+.adslSupportCheck > form {
+    margin-top: 35px;
+}
+
+#numberCheckBtn {
+    margin-top: 20px;
+}
+
+/*--------------------Our Services After FirstContent--------------------*/
+.ourServices {
+    background: #e8e8e8;
+    text-align: center;
+    margin-top: 40px;
+    padding: 25px 0;
+    height: auto;
+}
+
+.OurServiceContent {
+    padding: 65px 0;
+}
+
+.OurServiceContent > p {
+    font-size: 1em;
+    direction: rtl;
+    color: #555;
+}
+
+.OurServiceContent > img {
+    width: 70px;
+    height: 70px;
+}
+
+.ourServicesTitle > span {
+    margin-bottom: 20px;
+    display: inline-block;
+    color: #999;
+
+}
+
+.ourServicesTitle > span::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 5px;
+    height: 1px;
+    background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#a4a4a4), to(transparent));
+    background: -o-linear-gradient(left, transparent, #a4a4a4, transparent);
+    background: linear-gradient(90deg, transparent, #a4a4a4, transparent);
+    z-index: 10;
+}
+
+.ourNewsTitle {
+    margin-bottom: 40px;
+}
+
+/*--------------------Our News After OurService--------------------*/
+.ourNews {
+    text-align: center;
+    padding: 25px 0;
+}
+
+time > i {
+    margin-left: 5px;
+}
+
+.OurNewsContent {
+    text-align: right;
+}
+
+.OurNewsContent > img {
+    width: 70px;
+    height: 70px;
+}
+
+.OurNewsContent > a > p, time {
+    color: #999 !important;
+}
+
+.ourNewsTitle > span {
+    margin-bottom: 20px;
+    display: inline-block;
+    color: #999;
+}
+
+.ourNewsTitle > span::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 5px;
+    height: 1px;
+    background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#a4a4a4), to(transparent));
+    background: -o-linear-gradient(left, transparent, #a4a4a4, transparent);
+    background: linear-gradient(90deg, transparent, #a4a4a4, transparent);
+    z-index: 10;
+}
+
+.ourNewsTitle {
+    margin-bottom: 40px;
+}
+
+/*--------------------Footer---------------------------*/
+footer {
+    background-color: #242c39;
+    height: auto;
+    margin-top: 40px;
+    border-top: 5px solid #28aff8;
+    color: #c5c5c5;
+}
+
+.firstFooterContent {
+    margin: 40px 0 20px 0;
+    border-bottom: 1px solid #606060;
+}
+
+.leftFirstFooterContent > ul > li > a {
+    color: #cbcbcb !important;
+}
+
+.leftFirstFooterContent > ul > li {
+    padding: 8px 0;
+}
+
+.rightFirstFooterContent {
+    float: right;
+    padding: 20px 0 0 0;
+}
+
+.rightFirstFooterContent > ul {
+    float: left;
+    padding: 0;
+}
+
+.rightFirstFooterContent > ul > li {
+    float: left;
+    margin-left: 10px;
+}
+
+.rightFirstFooterContent > ul > li > a > img {
+    width: 40px;
+    height: 40px;
+}
+
+.rightFirstFooterContent > form > input {
+    text-align: right;
+
+}
+
+.leftSecondFooterContent > ul {
+    float: right;
+}
+
+.leftSecondFooterContent > ul > li {
+    float: right;
+    margin-left: 20px;
+
+}
+
+.leftSecondFooterContent > ul > li > a {
+    color: #bfbfbf !important;
+}
+
+.leftSecondFooterContent, .copyrightFooter {
+    float: right;
+}
+
+/********************************  Page one Css ********************************/
+.breadcrumbContent > a {
+    margin-left: 15px;
+    position: relative;
+}
+
+.breadcrumbContent > a > i {
+    display: inline-block;
+    position: absolute;
+    left: -10px;
+    top: 4px;
+
+}
+
+.breadcrumbLine {
+    padding: 10px 0;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+/*.breadcrumbContent > a:after {*/
+/*content: " ";*/
+/*display: block;*/
+/*position: absolute;*/
+/*top: 2px;*/
+/*left: -13px;*/
+/*background: url("../images/socialIcon/instagram.svg");*/
+/*width: 15px;*/
+/*height: 15px;*
+
+/*}*/
+
+/*Post Content*/
+.mainContent {
+    margin-top: 25px;
+}
+
+#postTitle {
+    font-size: 2em !important;
+    margin-bottom: 45px;
+}
+
+.leftSideOfContent {
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 1px 1px #e0dada;
+
+}
+
+.rightSideContent {
+    border-left: 1px solid #d8d8d8;
+    padding: 12px 25px !important;
+}
+
+.leftSideContent {
+    padding: 10px !important;
+}
+
+.leftSideContent > p {
+    margin: 0 !important;
+}
+
+/**/
+.ourServiceInSide {
+
+    margin-top: 25px;
+
+}
+
+.ourServiceSideTitle {
+    background-color: #f26322;
+    color: #ffffff;
+    border-radius: 5px 5px 0 0;
+}
+
+.ourServiceSideTitle > p {
+    padding: 15px;
+    margin: 0 !important;
+}
+.ourServiceSideContent > ul > li:not(:last-child) {
+    border-bottom: 1px solid #d8d8d8;
+}
+.ourServiceSideContent{
+    border: 1px solid #d8d8d8 ;
+    border-radius: 0 0 5px 5px;
+}
+.ourServiceContentTitle {
+    display: inline-block;
+    width: 90%;
+    padding: 10px;
+    color: #403c3c !important;
+}
+.ourServiceContentSign {
+    float: left;
+    display: inline-block;
+    width: 10%;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #d8d8d8;
+    color: #817c7c;
+    cursor: pointer;
+}
+.ourServiceContentSign:hover,.ourServiceContentTitle:hover{
+    background-color: #efefef;
+}
+
+.childLi{
+    padding: 0;
+    background: #efefef;
+
+}
+.childLi>li{
+    padding: 10px;
+
+}
+/********************************  Login Page Css ********************************/
+.loginContainer{
+    margin-top: 35px;
+}
+.loginContent{
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 1px #cdc9c9;
+}
+#loginIcon{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+#loginTitle{
+    font-size: 1.1em;
+
+    padding: 15px 0;
+
+    color: #575757;
+
+}
+.loginEmailInput{
+    background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
+    background-size: 16px 16px;
+    padding: 10px 40px 10px 8px !important;
+}
+.loginPassInput{
+    background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
+    background-size: 16px 16px;
+    padding: 10px 40px 10px 8px !important;
+}
+.remmemberMe{
+    color: #535353;
+}
+
