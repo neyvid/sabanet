@@ -1,15 +1,15 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+////Routes For FrontEnd Application with NameSpace FrontEnd
+//Route::group(['namespace' => 'Frontend'], function () {
+//    Route::get('/', function () {
+//        return view('home');
+//    });
+//});
+//
+////Routes For Admin Application with NameSpace admin and Prefix Admin(prefix for before route for exp /admin/home)
+//Route::group(['prefix' => 'Admin', 'namespace' => 'admin'], function () {
+//
+//});
 
 Route::get('/', function () {
     return view('home');
@@ -23,3 +23,6 @@ Route::get('/login', function () {
 Route::get('/regsiter', function () {
     return view('register');
 })->name('register');
+Route::get('/admin', function () {
+    return view('admin');
+})->name('admin');
