@@ -2,6 +2,7 @@
 <div id="topMenu">
     <div class="container">
         <div class="row">
+
             <div class=" col-lg-10">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -16,7 +17,7 @@
                                 <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('ourService')}}">خدمات ما</a>
+                                <a class="nav-link" href="">خدمات ما</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
@@ -30,12 +31,57 @@
                                     <a class="dropdown-item" href="#">مناطقق تحت پوشش اینترنت ADSL</a>
                                 </div>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">درباره ما</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " href="#">تماس با ما</a>
                             </li>
+                            @auth()
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle btn btn-success btn-sm" href=""
+                                       id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->present()->showName }}
+
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item profileLink"
+                                           href="{{ route('profile.home') }}">پروفایل</a>
+                                        @hasrole(\App\Models\Roles\Roles::USER)
+                                        <a class="dropdown-item ordersLink" href="#">سفارش های من</a>
+                                        @endhasrole
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item logoutLink" href="{{route('dologout')}}">خروج از حساب
+                                            کاربری</a>
+                                    </div>
+                                </li>
+                            @endauth
+                            @guest()
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle btn btn-info btn-md" href="" id="navbarDropdown"
+                                       role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        ورود/ثبت نام
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="navbarDropdown">
+                                        <div class="loginRegisterBtn">
+                                            <a class="dropdown-item" href="{{route('login')}}">ورود به نوید نت</a>
+                                        </div>
+                                        <div>
+                                            <p class="dropdown-item">کاربرجدید هستید؟</p>
+                                            <a href="{{route('register')}}" class="registerLink">ثبت نام</a>
+
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">مناطقق تحت پوشش اینترنت ADSL</a>
+                                    </div>
+                                </li>
+                            @endguest
+
+
                         </ul>
 
                     </div>
@@ -44,6 +90,7 @@
             <div class="col-lg-2">
                 <img src="{{asset('images/frontend/logo/Sabanet-Logo.png')}}" alt="لوگو شرکت نوید نت" class="logo">
             </div>
+
         </div>
     </div>
 

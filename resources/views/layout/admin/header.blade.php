@@ -9,25 +9,25 @@
     <!-- Bootstrap 3.3.7 -->
 
     {{--<link rel="stylesheet" href="css/admin/skins/_all-skins.min.css">--}}
-    <link rel="stylesheet" href="css/admin/admin.css">
+    <link rel="stylesheet" href="{{asset('css/admin/admin.css')}}">
 
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- Theme style -->
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 
     <!-- Morris chart -->
-    <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="{{asset('bower_components/morris.js/morris.css')}}">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,11 +58,6 @@
             </a>
 
 
-            <!-- Delete This after download -->
-            <a href="http://hosseinizadeh.ir/adminlte/admin-lte-fa.zip" class="btn hidden-xs" style="margin:6px 100px;padding:9px 50px;background-color:#d61577;border-color:#ad0b5d;font-weight:bold;color:#FFF">دانلود رایگان قالب</a>
-            <!-- End Delete-->
-
-
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
@@ -80,7 +75,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 علیرضا
@@ -93,7 +88,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="{{asset('dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 نگین
@@ -105,7 +100,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="{{asset('dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 نسترن
@@ -117,7 +112,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="{{asset('dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 نگین
@@ -129,7 +124,7 @@
                                     <li>
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                <img src="{{asset('dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 نسترن
@@ -265,41 +260,46 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/admin/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">علیرضا حسینی زاده</span>
+                            <img src="{{asset('images/admin/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">
+
+                                {{ Auth::user()->present()->showName }}
+                            </span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="images/admin/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="{{asset('images/admin/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    علیرضا حسینی زاده
-                                    <small>مدیریت کل سایت</small>
+                                    {{ Auth::user()->name }}
+                                    <small>
+                                        {{ \App\Models\Roles\Roles::getRoleName(Auth::user()->roles->first()->name) }}
+                                    </small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">صفحه من</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">فروش</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">دوستان</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+                            {{--<li class="user-body">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-xs-4 text-center">--}}
+                                        {{--<a href="#">صفحه من</a>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-xs-4 text-center">--}}
+                                        {{--<a href="#">فروش</a>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-xs-4 text-center">--}}
+                                        {{--<a href="#">دوستان</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!-- /.row -->--}}
+                            {{--</li>--}}
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">پروفایل</a>
+                                    <a href="{{route('profile.home')}}" class="btn btn-default btn-flat">پروفایل</a>
                                 </div>
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">خروج</a>
+                                    <a href="{{route('profile.logout')}}" class="btn btn-default btn-flat">خروج</a>
                                 </div>
                             </li>
                         </ul>

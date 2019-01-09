@@ -1,5 +1,6 @@
 @extends('layout.frontend.home')
 @section('content')
+
     <div class="sliderOne">
 
         <div class="container">

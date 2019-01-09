@@ -384,19 +384,23 @@ footer {
     padding: 15px;
     margin: 0 !important;
 }
+
 .ourServiceSideContent > ul > li:not(:last-child) {
     border-bottom: 1px solid #d8d8d8;
 }
-.ourServiceSideContent{
-    border: 1px solid #d8d8d8 ;
+
+.ourServiceSideContent {
+    border: 1px solid #d8d8d8;
     border-radius: 0 0 5px 5px;
 }
+
 .ourServiceContentTitle {
     display: inline-block;
     width: 90%;
     padding: 10px;
     color: #403c3c !important;
 }
+
 .ourServiceContentSign {
     float: left;
     display: inline-block;
@@ -407,34 +411,40 @@ footer {
     color: #817c7c;
     cursor: pointer;
 }
-.ourServiceContentSign:hover,.ourServiceContentTitle:hover{
+
+.ourServiceContentSign:hover, .ourServiceContentTitle:hover {
     background-color: #efefef;
 }
 
-.childLi{
+.childLi {
     padding: 0;
     background: #efefef;
 
 }
-.childLi>li{
+
+.childLi > li {
     padding: 10px;
 
 }
+
 /********************************  Login Page Css ********************************/
-.loginContainer{
+.loginContainer {
     margin-top: 35px;
 }
-.loginContent{
+
+.loginContent {
     padding: 15px;
     border-radius: 3px;
     box-shadow: 0 0 3px 1px #cdc9c9;
 }
-#loginIcon{
+
+#loginIcon {
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
 }
-#loginTitle{
+
+#loginTitle {
     font-size: 1.1em;
 
     padding: 15px 0;
@@ -442,17 +452,30 @@ footer {
     color: #575757;
 
 }
-.loginEmailInput{
+
+.loginEmailInput {
     background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
     background-size: 16px 16px;
     padding: 10px 40px 10px 8px !important;
 }
-.loginPassInput{
+
+.loginPassInput {
     background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
     background-size: 16px 16px;
     padding: 10px 40px 10px 8px !important;
 }
-.remmemberMe{
+
+.remmemberMe {
     color: #535353;
 }
 
+.resetPasswordInput {
+    background: url(../images/frontend/lock-icon.png) right 10px center no-repeat;
+    background-size: 16px 16px;
+    padding: 10px 40px 10px 8px !important;
+}
+
+#remembermeLink {
+    color: #0f00b3   !important;
+    font-size: 13px;
+}
