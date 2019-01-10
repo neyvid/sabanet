@@ -39,6 +39,19 @@
 
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>مدیریت شهرها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.city.list')}}"><i class="fa fa-circle-o"></i>لیست شهرها</a></li>
+                    <li><a href="{{route('profile.city.create')}}"><i class="fa fa-circle-o"></i>تعریف شهر جدید</a></li>
+
+                </ul>
+            </li>
 
         </ul>
     </section>

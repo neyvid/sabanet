@@ -5,7 +5,7 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    {{ Breadcrumbs::render('profile.state.list') }}
+    {{ Breadcrumbs::render('profile.city.list') }}
 @endsection
 
 @section('adminContent')
@@ -32,21 +32,21 @@
                         <thead>
                         <tr>
                             <th>ردیف</th>
-                            <th>نام استان</th>
+                            <th>نام شهر</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($states as $state)
+                        @foreach($cities as $city)
                             <tr>
                                 <td class="col-lg-1">{{$loop->iteration}}</td>
-                                <td>{{$state->name}}</td>
+                                <td>{{$city->name}}</td>
                                 <td>
-                                    <a href="{{route('profile.state.edit').'?item='.$state->id}}"><i data-toggle="tooltip" data-placement="top"
+                                    <a href="{{route('profile.city.edit').'?item='.$city->id}}"><i data-toggle="tooltip" data-placement="top"
                                                              class="fa fa-pencil-square fa-2x editColor"
                                                              title="ویرایش"></i></a>
                                     <a onclick="confirmDelete(event,this)"
-                                       href="{{route('profile.state.delete').'?item='.$state->id}}"><i
+                                       href="{{route('profile.city.delete').'?item='.$city->id}}"><i
                                             data-toggle="tooltip" data-placement="top"
                                             class="fa fa-times-circle fa-2x deleteColor" title="حذف"></i></a>
 

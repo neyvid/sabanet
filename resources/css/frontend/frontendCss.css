@@ -87,6 +87,52 @@ nav {
     min-width: 15rem !important;
 }
 
+.loginRegisterBtn {
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.loginRegisterBtn > a {
+    background: rgb(63, 154, 229);;
+    color: #ffffff !important;
+}
+
+.loginRegisterBtn > a:hover {
+    background: rgb(63, 154, 229);;
+    color: #ffffff !important;
+}
+
+p.dropdown-item {
+    display: inline !important;
+}
+
+.registerLink {
+    color: #008cff !important;
+    border-bottom: dotted;
+    padding: 0 5px;
+}
+
+.profileLink, .logoutLink, .ordersLink {
+    background-size: 17px !important;
+    padding-right: 35px !important;
+}
+
+.profileLink {
+    background: url(../images/frontend/user.png) right 10px center no-repeat;
+
+}
+
+.logoutLink {
+    background: url(../images/frontend/logout.png) right 10px center no-repeat;
+
+}
+
+.ordersLink {
+    background: url(../images/frontend/cart.png) right 10px center no-repeat;
+
+}
+
 /*--------------------Slider One Css--------------------*/
 .sliderOne {
     margin-top: 2rem;
@@ -453,14 +499,14 @@ footer {
 
 }
 
-.loginEmailInput {
+.MobileInput {
     background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
     background-size: 16px 16px;
     padding: 10px 40px 10px 8px !important;
 }
 
-.loginPassInput {
-    background: url(../images/frontend/person-icon.png) right 10px center no-repeat;
+.PassInput {
+    background: url(../images/frontend/lock-icon.png) right 10px center no-repeat;
     background-size: 16px 16px;
     padding: 10px 40px 10px 8px !important;
 }
@@ -476,6 +522,6 @@ footer {
 }
 
 #remembermeLink {
-    color: #0f00b3   !important;
+    color: #0f00b3 !important;
     font-size: 13px;
 }

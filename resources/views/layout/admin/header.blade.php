@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>داشبرد | کنترل پنل مدیریت</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -10,7 +11,8 @@
 
     {{--<link rel="stylesheet" href="css/admin/skins/_all-skins.min.css">--}}
     <link rel="stylesheet" href="{{asset('css/admin/admin.css')}}">
-
+    {{--Custom Admin Css--}}
+    <link rel="stylesheet" href="{{asset('css/admin/adminCustom.css')}}">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
@@ -28,7 +30,8 @@
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-
+    {{--for sweetAlert and more plugin in Admin--}}
+    <script src="{{asset('js/admin/customAdminJs.js')}}"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

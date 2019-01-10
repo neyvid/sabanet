@@ -14,74 +14,65 @@ class StateController extends Controller
 
     public function __construct()
     {
-        $this->stateRepository=new StateRepository();
+        $this->stateRepository = new StateRepository();
     }
+
     public function index()
     {
-        return view('admin.state.index');
+        $title = 'لیست استان ها';
+        $states = $this->stateRepository->all();
+        return view('admin.state.index', compact('states', 'title'));
     }
 
     public function create()
     {
-        return view('admin.state.create');
+        $title = 'ایجاد استان جدید';
+        return view('admin.state.create', compact('title'));
 
     }
 
 
     public function store(StateCreate $request)
     {
-        $stateName=$request->input('name');
-        $stateCreate=$this->stateRepository->create([
-            'name'=>$stateName
+        $stateName = $request->input('name');
+        $stateCreate = $this->stateRepository->create([
+            'name' => $stateName
         ]);
-        if($stateCreate && $stateCreate instanceof State){
-            return redirect()->back()->with('success','استان مورد نظر شما با موفقیت ثبت گردید');
+        if ($stateCreate && $stateCreate instanceof State) {
+            return redirect()->back()->with('success', 'استان مورد نظر شما با موفقیت ثبت گردید');
         }
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\State  $state
-     * @return \Illuminate\Http\Response
-     */
-    public function show(State $state)
+
+    public function edit(Request $request)
     {
-        //
+        $title = 'ویرایش';
+        $state = $this->stateRepository->find($request->input('item'));
+        return view('admin.state.edit', compact('state', 'title'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\State  $state
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(State $state)
+
+    public function update(StateCreate $request)
     {
-        //
+        $itemIdForupdate = $request->input('item');
+        $update = $this->stateRepository->update($itemIdForupdate,
+            [
+                'name' => $request->input('name')
+            ]);
+        if ($update) {
+            return redirect()->route('profile.state.list')->with('success', 'ویرایش با موفقیت انجام شد.');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\State  $state
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, State $state)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\State  $state
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(State $state)
+    public function destroy(Request $request)
     {
-        //
+        $itemId = $request->input('item');
+        $deletItem = $this->stateRepository->delete($itemId);
+        if ($deletItem) {
+            return redirect()->back()->with('success', 'شهر مورد نظربا موفقیت حذف گردید');
+        }
     }
 }

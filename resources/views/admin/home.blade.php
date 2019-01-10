@@ -5,10 +5,15 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> خانه</a></li>
-        <li class="active">داشبرد</li>
-    </ol>
+    {{ Breadcrumbs::render('profile.home') }}
+    {{--{{ Breadcrumbs::render('about') }}--}}
+    {{--<ol class="breadcrumb">--}}
+        {{--<li>--}}
+            {{--<a href="#">--}}
+                {{--<i class="fa fa-dashboard"></i> {{ Breadcrumbs::render('profile.home') }}</a>--}}
+        {{--</li>--}}
+        {{--<li class="active">داشبرد</li>--}}
+    {{--</ol>--}}
 @endsection
 
 @section('adminContent')

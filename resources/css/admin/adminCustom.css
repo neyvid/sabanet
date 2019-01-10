@@ -1,0 +1,15 @@
+.deleteColor{
+    color: #b90000;
+}
+.editColor{
+    color: #2a8544;
+}
+.swal-modal{
+    font-family: Vazir !important;
+}
+.swal-footer{
+    float: right !important;
+}
+.swal-button-container{
+    float: left !important;
+}

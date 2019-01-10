@@ -1,9 +1,11 @@
 {
     "/js/admin/adminJs.js": "/js/admin/adminJs.js",
+    "/js/admin/customAdminJs.js": "/js/admin/customAdminJs.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/frontend/customJs.js": "/js/frontend/customJs.js",
     "/css/frontendCss.css": "/css/frontendCss.css",
     "/css/frontend/swiper.css": "/css/frontend/swiper.css",
+    "/css/admin/adminCustom.css": "/css/admin/adminCustom.css",
     "/css/admin/admin.css": "/css/admin/admin.css"
 }

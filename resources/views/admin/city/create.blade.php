@@ -40,10 +40,27 @@
                     <form method="post">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label>نام استان:</label>
-                            <input type="text" name="name" class="form-control" placeholder="نام استان را واردنمایید">
+                            <label>نام شهر:</label>
+                            <input type="text" name="name" class="form-control" placeholder="نام شهر را واردنمایید">
                         </div>
 
+                        <div class="form-group">
+                            <label>معمولی</label>
+                            <select class="form-control select2" style="width: 100%;">
+                                <option selected="selected">تهران</option>
+                                <option>مشهد</option>
+                                <option>اصفهان</option>
+                                <option>شیراز</option>
+                                <option>اهواز</option>
+                                <option>تبریز</option>
+                                <option>کرج</option>
+                            </select>
+                        </div>
+                        <script>
+                            $(document).ready(function() {
+                                $('.select2').select2();
+                            });
+                        </script>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-info">ثبت</button>
                         </div>

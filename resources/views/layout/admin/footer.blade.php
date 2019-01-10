@@ -1,6 +1,5 @@
 <footer class="main-footer text-left">
-    <strong>Copyleft &copy; 2014-2017 <a href="https://adminlte.io">Almsaeed Studio</a> & <a
-            href="http://hosseinizadeh.ir/adminlte">Alireza Hosseinizadeh</a></strong>
+    <strong>طراحی و توسعه توسط : <a href="#">نوید سخی طبع</a></strong>
 </footer>
 
 <!-- Control Sidebar -->
@@ -234,6 +233,7 @@
 <!-- DataTables -->
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
 <!-- AdminLTE App -->
 {{--<script src="dist/js/adminlte.min.js"></script>--}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -241,36 +241,10 @@
 <!-- AdminLTE for demo purposes -->
 {{--<script src="dist/js/demo.js"></script>--}}
 <script src="{{asset('js/admin/adminJs.js')}}"></script>
-<script>
-    $(function () {
-        $('#example1').DataTable({
-            "language": {
-                "lengthMenu": "نمایش _MENU_  در هر صفحه ",
-                "zeroRecords": "متاسفانه موردی یافت نشد!",
-                "info": "نمایش صفحه _PAGE_ از _PAGES_",
-                "infoEmpty": "موردی در دسترس نیست",
-                "infoFiltered": "(فیلترشده از _MAX_ جمع records)",
-                'search':'جستجو',
-                "oPaginate": {
-                    "sFirst": "اولین",
-                    "sPrevious": "قبلی",
-                    "sNext": "بعدی",
-                    "sLast": "آخرین"
-                }
-            }
-        })
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false,
+<script src="{{asset('js/admin/customAdminJs.js')}}"></script>
 
-        })
-    })
 
-</script>
+
 
 
 

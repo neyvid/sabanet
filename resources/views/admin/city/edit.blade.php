@@ -5,10 +5,10 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> خانه</a></li>
-        <li class="active">داشبرد</li>
-    </ol>
+    {{ Breadcrumbs::render('profile.state.edit') }}
+
+
+
 @endsection
 
 @section('adminContent')
@@ -20,6 +20,7 @@
                     {{ session('success') }}
                 </div>
             @endif
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -41,7 +42,7 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>نام استان:</label>
-                            <input type="text" name="name" class="form-control" placeholder="نام استان را واردنمایید">
+                            <input type="text" name="name" class="form-control" placeholder="نام استان را واردنمایید" value="{{$state->name}}">
                         </div>
 
                         <div class="box-footer">

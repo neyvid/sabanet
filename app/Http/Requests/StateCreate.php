@@ -29,8 +29,8 @@ class StateCreate extends FormRequest
     }public function messages()
     {
         return [
-            'name.required'=>'نام استان را الزامی می باشد',
-            'name.regex'=>'نام استان را بصورت فارسی و صحیح وارد نمایید'
+            'name.required'=>'نام را وارد نمایید',
+            'name.regex'=>'نام را بصورت فارسی و صحیح وارد نمایید'
         ];
     }
 }
