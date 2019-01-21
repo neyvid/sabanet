@@ -31,19 +31,19 @@ class StateController extends Controller
 
     }
 
-
     public function store(StateCreate $request)
     {
         $stateName = $request->input('name');
+        $stateCode = $request->input('code');
         $stateCreate = $this->stateRepository->create([
-            'name' => $stateName
+            'name' => $stateName,
+            'code' => $stateCode
         ]);
         if ($stateCreate && $stateCreate instanceof State) {
             return redirect()->back()->with('success', 'استان مورد نظر شما با موفقیت ثبت گردید');
         }
 
     }
-
 
     public function edit(Request $request)
     {
@@ -53,23 +53,23 @@ class StateController extends Controller
 
     }
 
-
     public function update(StateCreate $request)
     {
         $itemIdForupdate = $request->input('item');
         $update = $this->stateRepository->update($itemIdForupdate,
             [
-                'name' => $request->input('name')
+                'name' => $request->input('name'),
+                'code' => $request->input('code')
             ]);
         if ($update) {
             return redirect()->route('profile.state.list')->with('success', 'ویرایش با موفقیت انجام شد.');
         }
     }
 
-
     public function destroy(Request $request)
     {
         $itemId = $request->input('item');
+
         $deletItem = $this->stateRepository->delete($itemId);
         if ($deletItem) {
             return redirect()->back()->with('success', 'شهر مورد نظربا موفقیت حذف گردید');

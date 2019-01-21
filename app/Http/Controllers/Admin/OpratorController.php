@@ -4,83 +4,68 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Oprator;
+use App\Repositories\opratorRepository\OpratorRepository;
 use Illuminate\Http\Request;
 
 class OpratorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $opratorRepository;
+
+    public function __construct()
+    {
+        $this->opratorRepository = new OpratorRepository();
+    }
+
     public function index()
     {
-        //
+        $title = 'لیست اپراتور ها';
+        $oprators = $this->opratorRepository->all();
+        return view('admin.oprator.index', compact('oprators', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $title = 'ایجاد اپراتور جدید';
+        return view('admin.oprator.create', compact('title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $opratorCreate = $this->opratorRepository->create([
+            'name' => $request->input('name')
+        ]);
+        if ($opratorCreate) {
+            return redirect()->back()->with('success', 'اپراتور مورد نظر با موفقیت ثبت گردید');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Oprator  $oprator
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Oprator $oprator)
+
+    public function edit(Request $request)
     {
-        //
+        $title='ویرایش اپراتور';
+        $oprator=$this->opratorRepository->find($request->input('item'));
+        return view('admin.oprator.edit',compact('title','oprator'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Oprator  $oprator
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Oprator $oprator)
+    public function update(Request $request)
     {
-        //
+        $itemIdForUpdate=$request->input('item');
+        $update=$this->opratorRepository->update($itemIdForUpdate,[
+            'name'=>$request->input('name')
+        ]);
+        if($update){
+            return redirect()->back()->with('success','اپراتور مورد نظر با موفقیت بروزرسانی شد');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Oprator  $oprator
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Oprator $oprator)
+    public function destroy(Request $request)
     {
-        //
-    }
+        $itemIdForDelete=$request->input('item');
+        $deleted=$this->opratorRepository->delete($itemIdForDelete);
+        if($deleted){
+            return redirect()->back()->with('success','اپراتور مورد نظر با موفقیت حذف گردید');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Oprator  $oprator
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Oprator $oprator)
-    {
-        //
+        }
     }
 }

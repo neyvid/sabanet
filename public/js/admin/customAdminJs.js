@@ -612,7 +612,7 @@ __webpack_require__.r(__webpack_exports__);
 $(function () {
   $('#example1').DataTable({
     "language": {
-      "lengthMenu": "نمایش _MENU_  در هر صفحه ",
+      "lengthMenu": "نمایش _MENU_ مورد در هر صفحه ",
       "zeroRecords": "متاسفانه موردی یافت نشد!",
       "info": "نمایش صفحه _PAGE_ از _PAGES_",
       "infoEmpty": "موردی در دسترس نیست",
@@ -633,6 +633,12 @@ $(function () {
     'ordering': true,
     'info': true,
     'autoWidth': false
+  });
+});
+$(document).ready(function () {
+  $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue'
   });
 });
 

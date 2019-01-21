@@ -12,7 +12,7 @@ class City extends Model
 
     public function areaCodes()
     {
-        return $this->belongsToMany(Areacode::class);
+        return $this->hasMany(Areacode::class);
 
     }
 

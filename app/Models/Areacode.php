@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\AreaCodePresenter;
 use App\Presenters\Contract\Presentable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,11 +10,16 @@ class Areacode extends Model
 {
     use Presentable;
     protected $guarded = ['id'];
+    protected $presenter=AreaCodePresenter::class;
 
-    public function cities()
+    public function city()
     {
-        return $this->belongsToMany(City::class);
+        return $this->belongsTo(City::class);
+    }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
     }
 
     public function oprators()
@@ -21,8 +27,10 @@ class Areacode extends Model
         return $this->belongsToMany(Oprator::class);
     }
 
-    public function telecomCenter()
+    public function telecomcenter()
     {
         return $this->belongsTo(Telecomcenter::class);
     }
+
+
 }

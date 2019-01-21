@@ -41,8 +41,20 @@
                     <form method="post">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label>نام استان:</label>
-                            <input type="text" name="name" class="form-control" placeholder="نام استان را واردنمایید" value="{{$state->name}}">
+                            <label>نام شهر:</label>
+                            <input type="text" name="name" class="form-control" placeholder="نام شهر را واردنمایید" value="{{$city->name}}">
+                        </div>
+                        <div class="form-group">
+                            <label>استان شهر را انتخاب نمایید : </label>
+                            <select class="form-control states" name="state" style="width: 100%;">
+                                @if(isset($states))
+                                    @foreach($states as $state)
+                                        <option {{ $state->id == $city->state->id ? 'selected=selected' : '' }} value="{{$state->id}}" >{{$state->name}}</option>
+                                    @endforeach
+                                @endif
+
+                            </select>
+
                         </div>
 
                         <div class="box-footer">
@@ -58,7 +70,24 @@
 
     </div>
     <!-- Main row -->
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
 
+        $(document).ready(function () {
+            $.fn.select2.defaults.set("theme", "classic");
+
+            $('.states').select2({
+                dir: "rtl",
+                placeholder: "شهرموردنظرراانتخاب نمایید",
+
+            });
+
+        });
+    </script>
 
 @endsection
 

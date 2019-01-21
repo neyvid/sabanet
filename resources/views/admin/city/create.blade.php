@@ -45,22 +45,33 @@
                         </div>
 
                         <div class="form-group">
-                            <label>معمولی</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">تهران</option>
-                                <option>مشهد</option>
-                                <option>اصفهان</option>
-                                <option>شیراز</option>
-                                <option>اهواز</option>
-                                <option>تبریز</option>
-                                <option>کرج</option>
+                            <label>استان شهر را انتخاب نمایید : </label>
+                            <select class="form-control states" name="state" style="width: 100%;">
+                                @if(isset($states))
+                                    @foreach($states as $state)
+                                        <option value="{{$state->id}}" >{{$state->name}}</option>
+                                    @endforeach
+                                @endif
+
                             </select>
+
                         </div>
+                        <script
+                            src="https://code.jquery.com/jquery-3.3.1.min.js"
+                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                            crossorigin="anonymous"></script>
                         <script>
-                            $(document).ready(function() {
-                                $('.select2').select2();
+                            // In your Javascript (external .js resource or <script> tag)
+                            $(document).ready(function () {
+                                $.fn.select2.defaults.set("theme", "classic");
+                                $('.states').select2({
+                                    dir: "rtl",
+                                    placeholder: "شهرموردنظرراانتخاب نمایید",
+
+                                });
                             });
                         </script>
+
                         <div class="box-footer">
                             <button type="submit" class="btn btn-info">ثبت</button>
                         </div>

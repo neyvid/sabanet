@@ -15,7 +15,7 @@ class Telecomcenter extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function areaCodes()
+    public function areacode()
     {
         return $this->hasMany(Areacode::class);
     }

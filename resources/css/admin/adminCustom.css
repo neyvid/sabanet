@@ -13,3 +13,7 @@
 .swal-button-container{
     float: left !important;
 }
+.opratorLable{
+    display: block !important;
+    margin-bottom: 10px !important;
+}

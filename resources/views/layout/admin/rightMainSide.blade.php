@@ -28,30 +28,83 @@
             <li class="header">منو</li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>مدیریت استان ها</span>
+                    <i class="fa fa-flag"></i> <span>مدیریت استان ها</span>
                     <span class="pull-left-container">
               <i class="fa fa-angle-right pull-left"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('profile.state.list')}}"><i class="fa fa-circle-o"></i>لیست استان ها</a></li>
-                    <li><a href="{{route('profile.state.create')}}"><i class="fa fa-circle-o"></i>تعریف استان جدید</a></li>
+                    <li class="active"><a href="{{route('profile.state.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            استان ها</a></li>
+                    <li><a href="{{route('profile.state.create')}}"><i class="fa fa-circle-o"></i>تعریف استان جدید</a>
+                    </li>
 
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>مدیریت شهرها</span>
+                    <i class="fa fa-university"></i> <span>مدیریت شهرها</span>
                     <span class="pull-left-container">
               <i class="fa fa-angle-right pull-left"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('profile.city.list')}}"><i class="fa fa-circle-o"></i>لیست شهرها</a></li>
+                    <li class="active"><a href="{{route('profile.city.list')}}"><i class="fa fa-circle-o"></i>لیست شهرها</a>
+                    </li>
                     <li><a href="{{route('profile.city.create')}}"><i class="fa fa-circle-o"></i>تعریف شهر جدید</a></li>
 
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-building"></i> <span>مدیریت مراکزمخابراتی</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.telecomcenter.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            مراکزمخابرات</a></li>
+                    <li><a href="{{route('profile.telecomcenter.create')}}"><i class="fa fa-circle-o"></i>تعریف
+                            مرکزمخابرات جدید</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-wifi"></i> <span>مدیریت اپراتورها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.oprator.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            اپراتورها</a></li>
+
+                    <li><a href="{{route('profile.oprator.create')}}"><i class="fa fa-circle-o"></i>تعریف اپراتور
+                            جدید</a></li>
+                    <li><a href="{{route('profile.service.list')}}"><i class="fa fa-circle-o"></i>لیست سرویس
+                            اپراتورها</a></li>
+                    <li><a href="{{route('profile.service.create')}}"><i class="fa fa-circle-o"></i>تعریف سرویس
+                            جدید</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sort-numeric-desc"></i> <span>مدیریت پیش شماره ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.areacode.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            پیش شماره ها</a></li>
+                    <li><a href="{{route('profile.areacode.create')}}"><i class="fa fa-circle-o"></i>تعریف پیش شماره
+                            جدید</a></li>
+
+                </ul>
+            </li>
+
 
         </ul>
     </section>

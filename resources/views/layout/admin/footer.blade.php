@@ -206,6 +206,7 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Morris.js charts -->
@@ -224,6 +225,8 @@
 <script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <!-- datepicker -->
 <script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+<!-- iCheck -->
+<script src="{{asset('plugins/iCheck/icheck.min.js')}}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
@@ -233,6 +236,7 @@
 <!-- DataTables -->
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('bower_components/ckeditor/ckeditor.js')}}"></script>
 
 <!-- AdminLTE App -->
 {{--<script src="dist/js/adminlte.min.js"></script>--}}
@@ -242,11 +246,7 @@
 {{--<script src="dist/js/demo.js"></script>--}}
 <script src="{{asset('js/admin/adminJs.js')}}"></script>
 <script src="{{asset('js/admin/customAdminJs.js')}}"></script>
-
-
-
-
-
+<script type="application/javascript" src="{{asset('bower_components/select2/dist/js/select2.min.js')}}"></script>
 
 </body>
 </html>

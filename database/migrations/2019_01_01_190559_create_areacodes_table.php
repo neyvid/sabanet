@@ -18,7 +18,7 @@ class CreateAreacodesTable extends Migration
             $table->integer('state_id');
             $table->integer('city_id');
             $table->integer('telecomcenter_id');
-            $table->string('areaCode');
+            $table->string('areacode');
             $table->string('code');
             $table->timestamps();
         });

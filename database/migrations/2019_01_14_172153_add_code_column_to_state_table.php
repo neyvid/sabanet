@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAreacodeCitiesTable extends Migration
+class AddCodeColumnToStateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAreacodeCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('areacode_city', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('areacode_id');
-            $table->integer('city_id');
-            $table->timestamps();
+        Schema::table('states', function (Blueprint $table) {
+            $table->string('code')->after('name');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateAreacodeCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areacode_city');
+        Schema::table('states', function (Blueprint $table) {
+            $table->dropColumn('code');
+        });
     }
 }

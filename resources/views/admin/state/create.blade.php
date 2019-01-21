@@ -43,6 +43,10 @@
                             <label>نام استان:</label>
                             <input type="text" name="name" class="form-control" placeholder="نام استان را واردنمایید">
                         </div>
+                        <div class="form-group">
+                            <label>کد استان:</label>
+                            <input type="text" name="code" class="form-control" placeholder="کد استان را واردنمایید">
+                        </div>
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-info">ثبت</button>

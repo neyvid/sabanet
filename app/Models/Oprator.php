@@ -9,8 +9,9 @@ class Oprator extends Model
 {
     use Presentable;
     protected $guarded = ['id'];
+    public $timestamps=false;
 
-    public function areaCodes()
+    public function areacodes()
     {
         return $this->belongsToMany(Areacode::class);
     }

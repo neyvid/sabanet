@@ -38,24 +38,30 @@ class CityController extends Controller
     public function store(StateCreate $request)
     {
         $cityName = $request->input('name');
-        $cityCreate = $this->stateRepository->create([
-            'name' => $cityName
+        $cityCreate = $this->cityRepository->create([
+            'name' => $cityName,
+            'state_id'=>$request->input('state'),
         ]);
         if ($cityCreate && $cityCreate instanceof City) {
             return redirect()->back()->with('success', 'شهر مورد نظر شما با موفقیت ثبت گردید');
         }
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-
+        $itemId=$request->input('item');
+        $deleteItem=$this->cityRepository->delete($itemId);
+        if($deleteItem){
+            return redirect()->back()->with('success','شهر موردنظرباموفقیت حذف گردید');
+        }
     }
 
     public function edit(Request $request)
     {
         $title = 'ویرایش';
-        $cities = $this->cityRepository->find($request->input('item'));
-        return view('admin.city.edit', compact('cities', 'title'));
+        $city = $this->cityRepository->find($request->input('item'));
+        $states=$this->stateRepository->all();
+        return view('admin.city.edit', compact('city','states', 'title'));
     }
 
     public function update(Request $request)
@@ -68,5 +74,14 @@ class CityController extends Controller
         if ($update) {
             return redirect()->route('profile.city.list')->with('success', 'ویرایش با موفقیت انجام شد.');
         }
+    }
+
+    public function getCityByStateId(int $stateId)
+    {
+        $cities= $this->cityRepository->all()->where('state_id',$stateId);
+        $stateSelected=$this->stateRepository->find($stateId);
+        $codeOfThisState=$stateSelected->code;
+        $htmForShowCities=view('admin.areacode.showcities.cities',compact('cities'))->render();
+        return ['htmForShowCities'=>$htmForShowCities,'code'=>$codeOfThisState];
     }
 }

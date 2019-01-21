@@ -3,84 +3,140 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attachment\AttachmentType;
 use App\Models\Service;
+use App\Repositories\AttachmentRepository\AttachmentRepository;
+use App\Repositories\opratorRepository\OpratorRepository;
+use App\Repositories\ServiceRepository\ServiceRepository;
+use App\Services\Upload\UploadService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $serviceRepository;
+    protected $opratorRepository;
+
+    public function __construct()
+    {
+        $this->serviceRepository = new ServiceRepository();
+        $this->opratorRepository = new OpratorRepository();
+    }
+
     public function index()
     {
-        //
+        $title = 'سرویس های ارایه شده توسط اپراتور ها';
+        $services = $this->serviceRepository->all();
+        return view('admin.service.index', compact('services', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $title = 'ایجاد سرویس جدید برای اپراتور';
+        $oprators = $this->opratorRepository->all();
+        $serviceTypes = Service\ServiceType::getServiceType();
+        $servicePlans = Service\ServicePlan::getServicePlan();
+        return view('admin.service.create', compact('title', 'oprators', 'serviceTypes', 'servicePlans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $serviceCreate = $this->serviceRepository->create([
+            'oprator_id' => $request->input('oprator'),
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'plan' => $request->input('plan'),
+            'period' => $request->input('period'),
+            'night_trafic' => $request->input('nightTrafic'),
+            'speed' => $request->input('speed'),
+            'limit_amount' => $request->input('limitAmount'),
+            'international_trafic' => $request->input('internationalTrafic'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'discount' => $request->input('discount'),
+        ]);
+        if ($serviceCreate && $serviceCreate instanceof Service) {
+            $whiteList = config('upload.whitelist');
+            $uploadedFile = $request->file('picture');
+            if ($request->hasFile('picture') && in_array($uploadedFile->getClientMimeType(), $whiteList)) {
+                $newFile = UploadService::image($request->picture);
+                $attachmentRepository = new AttachmentRepository();
+                $createAttachment = $attachmentRepository->create([
+                    'type' => AttachmentType::IMAGE,
+                    'name' => $newFile['name'],
+                    'size' => $newFile['size'],
+                ]);
+                $serviceCreate->attachments()->sync([$createAttachment->id]);
+
+            }
+            return redirect()->back()->with('success', 'سرویس مورد نظر با موفقیت ثبت گردید');
+
+        }
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
+    public function edit(Request $request)
     {
-        //
+        $title = 'ویرایش سرویس اپراتور';
+        $service = $this->serviceRepository->find($request->item);
+        $oprators = $this->opratorRepository->all();
+        $serviceTypes = Service\ServiceType::getServiceType();
+        $servicePlans = Service\ServicePlan::getServicePlan();
+        return view('admin.service.edit', compact('title', 'service', 'oprators', 'serviceTypes', 'servicePlans'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
+    public function update(Request $request)
     {
-        //
+
+        $itemIdForUpdate = $request->input('item');
+        $serviceUpdate = $this->serviceRepository->update($itemIdForUpdate, [
+            'oprator_id' => $request->input('oprator'),
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'plan' => $request->input('plan'),
+            'period' => $request->input('period'),
+            'night_trafic' => $request->input('nightTrafic'),
+            'speed' => $request->input('speed'),
+            'limit_amount' => $request->input('limitAmount'),
+            'international_trafic' => $request->input('internationalTrafic'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'discount' => $request->input('discount'),
+        ]);
+        if ($serviceUpdate) {
+            $whiteList = config('upload.whitelist');
+            $uploadedFile = $request->file('picture');
+            if ($request->hasFile('picture') && in_array($uploadedFile->getClientMimeType(), $whiteList)) {
+                $newFile = UploadService::image($request->picture);
+                $itemForUpdate = $this->serviceRepository->find($itemIdForUpdate);
+                $attachmentRepository = new AttachmentRepository();
+                $createAttachment = $attachmentRepository->create([
+                    'type' => AttachmentType::IMAGE,
+                    'name' => $newFile['name'],
+                    'size' => $newFile['size'],
+                ]);
+                foreach ($itemForUpdate->attachments as $attachment) {
+                    File::delete(public_path('media/') . $attachment->name);
+                    $itemForUpdate->attachments()->delete($attachment->id);
+
+                }
+                $itemForUpdate->attachments()->sync([$createAttachment->id]);
+            }
+            return redirect()->back()->with('success', 'سرویس مورد نظر با موفقیت بروزرسانی شد گردید');
+
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Service $service)
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Service $service)
-    {
-        //
+        $itemId = $request->input('item');
+        $deleteItem = $this->serviceRepository->delete($itemId);
+        if ($deleteItem) {
+            return redirect()->back()->with('success', 'سرویس موردنظرباموفقیت حذف گردید');
+        }
     }
 }

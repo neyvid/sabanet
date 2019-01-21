@@ -33,6 +33,7 @@
                         <tr>
                             <th>ردیف</th>
                             <th>نام استان</th>
+                            <th>کد استان</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
@@ -41,6 +42,7 @@
                             <tr>
                                 <td class="col-lg-1">{{$loop->iteration}}</td>
                                 <td>{{$state->name}}</td>
+                                <td>{{$state->code}}</td>
                                 <td>
                                     <a href="{{route('profile.state.edit').'?item='.$state->id}}"><i data-toggle="tooltip" data-placement="top"
                                                              class="fa fa-pencil-square fa-2x editColor"
