@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceCreate;
 use App\Models\Attachment\AttachmentType;
 use App\Models\Service;
 use App\Repositories\AttachmentRepository\AttachmentRepository;
@@ -42,7 +43,7 @@ class ServiceController extends Controller
         return view('admin.service.create', compact('title', 'oprators', 'serviceTypes', 'servicePlans'));
     }
 
-    public function store(Request $request)
+    public function store(ServiceCreate $request)
     {
         $serviceCreate = $this->serviceRepository->create([
             'oprator_id' => $request->input('oprator'),

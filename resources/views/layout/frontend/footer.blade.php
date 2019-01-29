@@ -75,5 +75,7 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="js/frontend/customJs.js"></script>
+<script src="{{asset('plugins/nice-select/js/jquery.js')}}"></script>
+<script src="{{asset('plugins/nice-select/js/jquery.nice-select.js')}}"></script>
 </body>
 </html>

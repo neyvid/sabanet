@@ -525,3 +525,135 @@ footer {
     color: #0f00b3 !important;
     font-size: 13px;
 }
+
+/*Register Adsl from User */
+.adslRegisterBlock {
+    margin-top: 35px;
+}
+
+.adslRegisterFormWrap {
+    margin: 35px auto;
+    width: 30%;
+    height: 300px;
+    position: relative;
+
+}
+
+/*Nice Select Overide RTl*/
+.nice-select {
+    text-align: right !important;
+}
+
+.nice-select:after {
+    left: 12px !important;
+}
+
+.list {
+    width: 100% !important;
+}
+
+.list > li {
+    text-align: right !important;
+}
+
+/*Waiting show for Ajax Request*/
+.waiting {
+    border: 1px solid #ececec;
+    box-shadow: 0px 15px 64px 6px #7e7e7e;
+    position: absolute;
+    z-index: 1;
+    background: white;
+    width: 200px;
+    right: 20%;
+    height: 109px;
+    border-radius: 4px;
+}
+
+/* Horizental line for register Adsl of User STep*/
+
+.stepDiv {
+    margin-top: 20px;
+    height: 50px;
+    text-align: center;
+
+}
+
+.stepDiv > i {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    border: 1px solid #403c3c;
+
+}
+
+.stepDiv:not(:last-child):before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    border-top: 2px dotted #322c2c;
+    width: 100%;
+}
+
+.stepDiv > i.activeStep {
+    background-color: #00c700 !important;
+    border: 1px solid #00c700 !important;
+}
+
+.stepRowOrg {
+    height: 150px;
+}
+
+/*Services Of Orator Show */
+#opratorSelectTitle{
+    line-height: 2.5;
+}
+.serviceShow{
+    margin-top: 35px;
+}
+.serviceTitle{
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+.serviceWrap{
+    text-align: center !important;
+}
+
+.periodOfService{
+    font-size: 14px;
+    color: #626262;
+    padding: 10px 0;
+}
+.descOfService{
+    padding: 0 20px;
+}
+.serviceContent{
+    display: inline-block;
+    border: 1px solid #d7d7d7;
+}
+.selectBtnOfService{
+    border-radius: 0 !important;
+}
+.imageOfService{
+    width: 100%;
+}
+.titleOfService {
+    font-size: 15px;
+    margin: 25px;
+
+}
+
+.periodOfService {
+    font-size: 14px;
+    color: #626262;
+    padding: 20px;
+    border-bottom: 1px solid gainsboro;
+    margin: 0 30px 30px 30px;
+
+}
+
+

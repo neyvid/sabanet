@@ -12,9 +12,9 @@ class AreaCodePresenter extends Presenter
     {
         $oprators='';
         foreach ($this->entity->oprators as $oprator){
-            $oprators.=$oprator->name.' - ';
+            $oprators.=$oprator->name.' ، ';
         }
-        return rtrim($oprators,' - ');
+        return rtrim($oprators,' ، ');
 
     }
 

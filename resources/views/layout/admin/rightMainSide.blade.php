@@ -104,6 +104,34 @@
 
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sort-numeric-desc"></i> <span>مدیریت دسته بندی ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.category.list')}}"><i class="fa fa-circle-o"></i>لیست دسته بندی ها</a></li>
+                    <li><a href="{{route('profile.category.create')}}"><i class="fa fa-circle-o"></i>تعریف دسته بندی
+                            جدید</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sort-numeric-desc"></i> <span>مدیریت محصولات</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.product.list')}}"><i class="fa fa-circle-o"></i>لیست محصولات</a></li>
+                    <li><a href="{{route('profile.product.create')}}"><i class="fa fa-circle-o"></i>تعریف محصول
+                            جدید</a></li>
+
+                </ul>
+            </li>
 
 
         </ul>

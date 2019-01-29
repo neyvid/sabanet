@@ -49,6 +49,21 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Admin', 'middleware' => 'au
     Route::get('oprator/service/delete', 'ServiceController@destroy')->name('profile.service.delete'); //delete Services of database
     Route::get('oprator/service/edit', 'ServiceController@edit')->name('profile.service.edit');// show Form for Edit Services of Oprator
     Route::post('oprator/service/edit', 'ServiceController@update')->name('profile.service.update'); //store edit of Services in database
+//   Routes For Category
+    Route::get('category', 'CategoryController@index')->name('profile.category.list'); //show All category
+    Route::get('category/create', 'CategoryController@create')->name('profile.category.create'); //Show Form for Create category
+    Route::post('category/create', 'CategoryController@store')->name('profile.category.store'); //store category into database
+    Route::get('category/delete', 'CategoryController@destroy')->name('profile.category.delete'); //delete category
+    Route::get('category/edit', 'CategoryController@edit')->name('profile.category.edit');// show Form for Edit category
+    Route::post('category/edit', 'CategoryController@update')->name('profile.category.update'); //store edit of category in database
+    Route::post('/getCategoryOfCatType/{catTypeNum}', 'CategoryController@getCategoriesOfCategoryTypeNum'); //store edit of category in database
+//   Routes For Product
+    Route::get('product', 'ProductController@index')->name('profile.product.list'); //show All product
+    Route::get('product/create', 'ProductController@create')->name('profile.product.create'); //Show Form for create product
+    Route::post('product/create', 'ProductController@store')->name('profile.product.store'); //store product into database
+    Route::get('product/delete', 'ProductController@destroy')->name('profile.product.delete'); //delete product
+    Route::get('product/edit', 'ProductController@edit')->name('profile.product.edit');// show Form for Edit product
+    Route::post('product/edit', 'ProductController@update')->name('profile.product.update'); //store edit of product in database
 
 });
 
@@ -72,6 +87,18 @@ Route::group(['namespace' => 'Frontend'], function () {
 //    Route::get('/assignPermissionToRole', 'UserController@assignPermissionToRole');
 //        Route::get('/assingRoleToUser', 'UserController@assingRoleToUser');
 //        Route::get('/assignPermissionToUser', 'UserController@assignPermissionToUser');
+    Route::get('/page', 'HomeController@showPage')->name('showpage');
+//    Check number for support or no
+
+    Route::post('/checkAdslSupport', 'AdslController@chekAdslSupport')->name('chekAdslSupport');
+//    for buy online afte check number
+    Route::get('/registerAdslUser', 'AdslController@index')->name('registerAdslUser');
+//    when select one state then show city of that state (ajax)
+    Route::post('/registerAdslUser/{stateId}', 'AdslController@getCityFromStateId')->name('getCityFromStateId');
+    Route::post('/registerAdslUser', 'AdslController@checkAdslSupportWithStateAndCity')->name('checkAdslWitStateAndCity');
+    Route::post('/showServiceOfOprator/{opratorId}', 'AdslController@showServiceOfOprator')->name('showServiceOfOprator');
+    Route::post('/addServiceForUser/{serviceId}', 'AdslController@addServiceForUser')->name('addServiceForUser');
+
 
 });
 

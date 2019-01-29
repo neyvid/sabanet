@@ -45,6 +45,7 @@
                     <form method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
+
                             <label>نام سرویس:</label>
                             <input type="text" name="name" class="form-control" placeholder="نام سرویس را واردنمایید">
                         </div>

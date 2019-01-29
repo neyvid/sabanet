@@ -55,20 +55,61 @@
                     </p>
 
                 </div>
-                <div class="col-lg-4 text-center ourService adslSupportCheck">
+                <div class="col-lg-4 text-center ourService adslSupportCheck p-0">
                     <img src="{{asset('images/frontend/search.svg')}}" alt="">
                     <h3>بررسی پوشش خدمات +ADSL2 </h3>
-                    <form>
+                    <form method="post" id="checkAdslSupport">
                         <div class="row">
+                            <div class="alert alert-warning mt-3 validateAdslCheck"
+                                 style="display: none;width: 100%;margin: 0 14px 10px 14px;">
+
+                            </div>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" placeholder="شماره تلفن ثابت">
+                                <input type="text" name="telNumber" id="telNumber" class="form-control"
+                                       placeholder="شماره تلفن ثابت">
                             </div>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" placeholder="پیش شماره شهر">
+                                <input type="text" name="stateCode" id="stateCode" class="form-control"
+                                       placeholder="پیش شماره شهر">
                             </div>
                         </div>
                         <button id="numberCheckBtn" class="btn btn-success btn-block">بررسی</button>
                     </form>
+                    <script>
+                        $(document).ready(function () {
+                            $('#checkAdslSupport').submit(function (event) {
+                                event.preventDefault();
+                                $.ajaxSetup({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    }
+                                });
+                                let telNumber = $('#telNumber').val();
+                                let stateCode = $('#stateCode').val();
+                                $.ajax({
+                                    url: '/checkAdslSupport',
+                                    type: 'POST',
+                                    data: {stateCode: stateCode, telNumber: telNumber},
+                                    success: function (result) {
+                                        $('.validateAdslCheck>p').remove();
+                                        $('.validateAdslCheck').hide();
+                                        if (result.errors != null) {
+                                            $.each(result.errors, function (key, value) {
+                                                $('.validateAdslCheck').show();
+                                                $('.validateAdslCheck').append('<p>' + value + '</p>');
+                                            })
+                                        }
+                                        $('.responseOfAdslCheck').remove();
+                                        $('#checkAdslSupport').after(result);
+                                    },
+
+                                });
+
+                            });
+
+
+                        })
+                    </script>
                 </div>
             </div>
         </div>

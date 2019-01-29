@@ -4,6 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+   {{--Nice Select Plugin Css--}}
+    <link rel="stylesheet" href="{{asset('plugins/nice-select/css/nice-select.css')}}">
     {{--Custom Css--}}
     <link rel="stylesheet" href="{{asset('css/frontendCss.css')}}">
     {{--Swiper Css Of Slider--}}
