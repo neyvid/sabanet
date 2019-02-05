@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end no-gutters">
+            <div class="row justify-content-end no-gutters" id="selectOpratorWrap">
                 {{--{{dd(session('areacode')->oprators)}}--}}
                 <div class="col-lg-4 col-md-12 order-lg-1 order-2">
                     <select class="form-control oprator">
@@ -66,8 +66,22 @@
                     </div>
 
                 </div>
+                <div class="loading d-flex justify-content-center" style="margin-top: 25px;display: none !important;">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+
                 <div class="row mt-5 services">
 
+                </div>
+                <div class="row mt-5 text-center justify-content-between">
+                    <div class="col-4 next">
+                        <a href="{{route('showEquipmentOFService')}}" class="btn btn-primary btn-block btn-lg">ادامه</a>
+                    </div>
+                    <div class="col-4 return">
+                        <a class="btn btn-light btn-block btn-lg" href="">بازگشت</a>
+                    </div>
                 </div>
 
             </div>
@@ -77,6 +91,13 @@
                 $('select').niceSelect();
                 $('.oprator>ul>li').on('click', function () {
                     let opratorId = $(this).data('value');
+                    $(".loading").attr('style', 'display:none !important;margin-top:25px');
+                    $(document).ajaxStart(function () {
+                        $(".loading").show();
+                    });
+                    $(document).ajaxComplete(function () {
+                        $(".loading").attr('style', 'display:none !important;margin-top:25px');
+                    });
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

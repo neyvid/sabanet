@@ -608,39 +608,71 @@ footer {
 }
 
 /*Services Of Orator Show */
-#opratorSelectTitle{
+#opratorSelectTitle {
     line-height: 2.5;
 }
-.serviceShow{
+
+.serviceShow {
     margin-top: 35px;
 }
-.serviceTitle{
-    border-bottom: 1px solid #dcdcdc;
-    padding-bottom: 20px;
-    margin-bottom: 15px;
-}
-.serviceWrap{
-    text-align: center !important;
+
+.serviceTitle {
+    background: #da1f26;
+    padding: 10px;
+    color: white;
+    border-radius: 3px;
+    border: 0;
 }
 
-.periodOfService{
+.serviceTitle > span {
+    display: block;
+}
+
+.titleOfEquipment {
+    border-bottom: 1px solid #eed1d3;
+    margin: 0 0 40px 0;
+    padding: 0 !important;
+}
+
+.titleOfEquipment > p {
+    border: 1px solid #da1f26;
+    display: inline-block;
+    padding: 10px;
+    margin: 0;
+    background: #da1f26;
+    color: white;
+    border-radius: 5px 5px 0 0;
+}
+
+.serviceWrap {
+    text-align: center !important;
+    direction: rtl;
+}
+
+.periodOfService {
     font-size: 14px;
     color: #626262;
     padding: 10px 0;
 }
-.descOfService{
+
+.descOfService {
     padding: 0 20px;
 }
-.serviceContent{
+
+.serviceContent {
     display: inline-block;
     border: 1px solid #d7d7d7;
-}
-.selectBtnOfService{
-    border-radius: 0 !important;
-}
-.imageOfService{
     width: 100%;
 }
+
+.selectBtnOfService {
+    border-radius: 0 !important;
+}
+
+.imageOfService {
+    width: 100%;
+}
+
 .titleOfService {
     font-size: 15px;
     margin: 25px;
@@ -656,4 +688,35 @@ footer {
 
 }
 
+/*Button in adsl order*/
+.next > a {
+    color: #ffffff !important;
+}
 
+.next > a:before {
+    border: solid #ffffff;
+    border-width: 0 0 3px 3px;
+    padding: 3px;
+    content: '';
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+.return > a {
+    color: #747474 !important;
+}
+
+.return > a:after {
+    border: solid #747474;
+    border-width: 0 0 3px 3px;
+    padding: 3px;
+    content: '';
+    display: inline-block;
+    transform: rotate(-135deg);
+}
+
+@media (max-width: 760px) {
+    .serviceWrap {
+        margin-bottom: 20px;
+    }
+}

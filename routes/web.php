@@ -85,20 +85,29 @@ Route::group(['namespace' => 'Frontend'], function () {
 //    Route::get('/createRole', 'UserController@CreateRole');
 //    Route::get('/createPermission', 'UserController@CreatePermission');
 //    Route::get('/assignPermissionToRole', 'UserController@assignPermissionToRole');
-//        Route::get('/assingRoleToUser', 'UserController@assingRoleToUser');
-//        Route::get('/assignPermissionToUser', 'UserController@assignPermissionToUser');
+//    Route::get('/assingRoleToUser', 'UserController@assingRoleToUser');
+//    Route::get('/assignPermissionToUser', 'UserController@assignPermissionToUser');
     Route::get('/page', 'HomeController@showPage')->name('showpage');
-//    Check number for support or no
-
+//    Check number for support or not
     Route::post('/checkAdslSupport', 'AdslController@chekAdslSupport')->name('chekAdslSupport');
-//    for buy online afte check number
+//    For buy online after check number(after click on buyonline btn)
     Route::get('/registerAdslUser', 'AdslController@index')->name('registerAdslUser');
 //    when select one state then show city of that state (ajax)
     Route::post('/registerAdslUser/{stateId}', 'AdslController@getCityFromStateId')->name('getCityFromStateId');
+//    when select state and city and put number and click confirm run this route
     Route::post('/registerAdslUser', 'AdslController@checkAdslSupportWithStateAndCity')->name('checkAdslWitStateAndCity');
+//    when come in of top route,for show service of oprator of areacode (ajax)
     Route::post('/showServiceOfOprator/{opratorId}', 'AdslController@showServiceOfOprator')->name('showServiceOfOprator');
+//    when click on one service of oprator
     Route::post('/addServiceForUser/{serviceId}', 'AdslController@addServiceForUser')->name('addServiceForUser');
+    Route::get('/showEquipmentOFService', 'AdslController@showEquipmentOFService')->name('showEquipmentOFService');
 
+
+
+
+
+
+    Route::post('/addEquipmentForUser/{equType}/{equipmentId}', 'AdslController@addEquipmentForUser')->name('addEquipmentForUser');
 
 });
 

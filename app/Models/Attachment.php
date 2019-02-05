@@ -12,6 +12,6 @@ class Attachment extends Model
     public function services()
     {
         return $this->morphedByMany(Service::class,
-            'attachable');
+            'attachable','attachables');
     }
 }

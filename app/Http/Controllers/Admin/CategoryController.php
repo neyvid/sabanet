@@ -19,8 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         $title = 'لیست دسته بندی محصولات';
-        $categories=$this->categoryRepository->all();
-        return view('admin.category.index', compact('title','categories'));
+        $categories = $this->categoryRepository->all();
+        return view('admin.category.index', compact('title', 'categories'));
     }
 
     public function create()
@@ -37,8 +37,27 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id,
             'category_type' => $request->category_type
         ]);
-        if($category && $category instanceof Category){
-            return redirect()->back()->with('success','دسته مورد نظر شما با موفقیت ثبت گردید');
+        if ($category && $category instanceof Category) {
+            return redirect()->back()->with('success', 'دسته مورد نظر شما با موفقیت ثبت گردید');
+        }
+    }
+
+    public function edit(Request $request)
+    {
+        $title = 'ویرایش دسته بندی ها';
+        $itemId = $request->item;
+        $category = $this->categoryRepository->find($itemId);
+        $childrenOfCategory = $category->children;
+        $categories = $this->categoryRepository->all()->groupBy('parent_id');
+        return view('admin.category.edit', compact('title', 'category', 'childrenOfCategory', 'categories'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $itemId = $request->item;
+        $deletedItem = $this->categoryRepository->delete($itemId);
+        if ($deletedItem) {
+            return redirect()->back()->with('success', 'دسته بندی موردنظرباموفقیت حذف گردید');
         }
     }
 

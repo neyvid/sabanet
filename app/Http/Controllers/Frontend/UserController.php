@@ -170,6 +170,7 @@ class UserController extends Controller
         Role::findByName(Roles::USER)->givePermissionTo(Permissions::USERACCESS);
     }
 
+
     public function assingRoleToUser()
     {
         $user=$this->userRepository->find(1);

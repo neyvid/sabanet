@@ -115,16 +115,20 @@ class ServiceController extends Controller
                 $newFile = UploadService::image($request->picture);
                 $itemForUpdate = $this->serviceRepository->find($itemIdForUpdate);
                 $attachmentRepository = new AttachmentRepository();
+//                $createAttachment = $attachmentRepository->create([
+//                    'type' => AttachmentType::IMAGE,
+//                    'name' => $newFile['name'],
+//                    'size' => $newFile['size'],
+//                ]);
+                foreach ($itemForUpdate->attachments as $attachment) {
+                    File::delete(public_path('media/') . $attachment->name);
+                    $itemForUpdate->attachments()->delete($attachment->id);
+                }
                 $createAttachment = $attachmentRepository->create([
                     'type' => AttachmentType::IMAGE,
                     'name' => $newFile['name'],
                     'size' => $newFile['size'],
                 ]);
-                foreach ($itemForUpdate->attachments as $attachment) {
-                    File::delete(public_path('media/') . $attachment->name);
-                    $itemForUpdate->attachments()->delete($attachment->id);
-
-                }
                 $itemForUpdate->attachments()->sync([$createAttachment->id]);
             }
             return redirect()->back()->with('success', 'سرویس مورد نظر با موفقیت بروزرسانی شد گردید');

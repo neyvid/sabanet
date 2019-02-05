@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\CheckAdsl;
+use App\Models\Product\ProductType;
+use App\Models\Service;
 use App\Repositories\areadcodeRepository\AreacodeRepository;
 use App\Repositories\CityRepository\CityRepository;
 use App\Repositories\opratorRepository\OpratorRepository;
@@ -107,15 +109,43 @@ class AdslController extends Controller
         $serviceId = $request->serviceId;
         $serviceRepository = new ServiceRepository();
         $service = $serviceRepository->find($serviceId);
-        if (session()->has('service')) {
-            session()->forget('service');
+        if ($service && $service instanceof Service) {
+            if (session()->has('service')) {
+                session()->forget('service');
+            }
+            session(['service' => $service]);
         }
-        session(['service' => $service]);
-        $productRepository=new ProductRepository();
+        return redirect()->back();
+    }
 
-        $viewOfProducts= view('frontend.adsl.showproducts',compact('products'))->render();
-        return $viewOfProducts;
+    public function showEquipmentOFService()
+    {
+        if (!session()->has('service')) {
+            return redirect()->back(302);
+        }
+        $productRepository = new ProductRepository();
+        $productsForNetwork = $productRepository->all()->where('product_type', ProductType::NETWORK_EQUIPMENT);
+        $productsForPc = $productRepository->all()->where('product_type', ProductType::PC_EQUIPMENT);
+        return view('frontend.adsl.showproducts', compact('productsForNetwork', 'productsForPc'));
 
     }
+
+    public function addEquipmentForUser(Request $request)
+    {
+        if ($request->equipmentId == session($request->equType)['id']) {
+            session()->forget($request->equType);
+        } else {
+            session()->forget($request->equType);
+            $productId = $request->equipmentId;
+            $productRepository = new ProductRepository();
+            $product = $productRepository->find($productId);
+            session([$request->equType => $product]);
+        }
+
+        return session()->all();
+
+
+    }
+
 }
 

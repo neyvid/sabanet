@@ -5,7 +5,7 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    {{--{{ Breadcrumbs::render('profile.city.list') }}--}}
+    {{ Breadcrumbs::render('profile.state.list') }}
 @endsection
 
 @section('adminContent')
@@ -18,7 +18,7 @@
                     </div>
                 @endif
                 @if(session('warning'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-warning">
                         {{ session('warning') }}
                     </div>
                 @endif
@@ -32,26 +32,33 @@
                         <thead>
                         <tr>
                             <th>ردیف</th>
-                            <th>نام دسته بندی</th>
-                            <th>سردسته</th>
+                            <th>نام محصول</th>
+                            <th>قیمت</th>
+                            <th>تخفیف</th>
+                            <th>گروه محصول</th>
+                            <th>موجودی انبار</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categories as $category)
+
+                        @foreach($products as $product)
                             <tr>
                                 <td class="col-lg-1">{{$loop->iteration}}</td>
-                                <td>{{$category->name}}</td>
-                                <td>{{isset($category->parent)? $category->parent->name : '--'}}</td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->price}}</td>
+                                <td>{{$product->discount}}</td>
+                                <td>{{isset($product->category->name)? $product->category->name : '-'}}</td>
+                                <td>{{$product->stock}}</td>
                                 <td>
-                                    <a href="{{route('profile.category.edit').'?item='.$category->id}}"><i
+                                    <a href="{{route('profile.product.edit').'?item='.$product->id}}"><i
                                             data-toggle="tooltip" data-placement="top"
                                             class="fa fa-pencil-square fa-2x editColor"
                                             title="ویرایش"></i></a>
                                     <a onclick="confirmDelete(event,this)"
-                                       href="{{route('profile.category.delete').'?item='.$category->id}}"><i
+                                       href="{{route('profile.product.delete').'?item='.$product->id}}"><i
                                             data-toggle="tooltip" data-placement="top"
-                                            class="fa fa-times-circle fa-2x deleteColor" title="حذف" data-obj="{{count($category->children)}}"></i></a>
+                                            class="fa fa-times-circle fa-2x deleteColor" title="حذف"></i></a>
                                 </td>
 
                             </tr>
@@ -69,16 +76,10 @@
     <script>
         function confirmDelete(e, tag) {
             e.preventDefault();
-            let checkHaveChildren=$(tag).find('>i').data('obj');
-            let exist='';
-            if(checkHaveChildren>0){
-                exist='(این گروه دارای زیر دسته می باشد، لذا با حذف این گروه تمام زیر دسته های آن هم حذف خواهند گردید)'
-            }
-
             let hrefOfTag = $(tag).attr('href');
             swal({
                 title: "ازحذف این مورد اطمینان دارید؟",
-                text: "درصورت تایید ، فیلد مورد نظر حذف می گردد "  + " " +  exist,
+                text: "درصورت تایید ، فیلد مورد نظر حذف می گردد!",
                 icon: "warning",
                 buttons: ["خیر", "بله"],
                 dangerMode: true,
@@ -89,5 +90,4 @@
             });
         }
     </script>
-
 @endsection

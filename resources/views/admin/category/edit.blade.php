@@ -41,16 +41,18 @@
                     <form method="post">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label>نام شهر:</label>
-                            <input type="text" name="name" class="form-control" placeholder="نام شهر را واردنمایید" value="{{$city->name}}">
+                            <label>نام دسته:</label>
+                            <input type="text" name="name" class="form-control"
+                                   placeholder="نام دسته بندی را واردنمایید" value="{{$category->name}}">
                         </div>
+
                         <div class="form-group">
-                            <label>استان شهر را انتخاب نمایید : </label>
-                            <select class="form-control states" name="state" style="width: 100%;">
-                                @if(isset($states))
-                                    @foreach($states as $state)
-                                        <option {{ $state->id == $city->state->id ? 'selected=selected' : '' }} value="{{$state->id}}" >{{$state->name}}</option>
-                                    @endforeach
+                            <label>این دسته مربوط به دسته زیر می باشد می باشد: (برای تغییر میتوانید از منو موجود تغییر
+                                را انجام دهید)</label>
+                            <select class="form-control states" name="headCategory" style="width: 100%;">
+                                @if(isset($categories))
+                                    <option value="0">مادر</option>
+                                   @include('admin.category.showCategoryItem.category_tree',['collection'=>$categories[0]])
                                 @endif
 
                             </select>
