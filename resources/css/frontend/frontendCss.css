@@ -605,8 +605,26 @@ footer {
 
 .stepRowOrg {
     height: 150px;
+    direction: rtl;
 }
 
+.currentStep > i {
+    background: #0000f5 !important;
+    border: none !important;
+}
+
+.fa-check {
+    display: none !important;
+}
+.completeStep>i>i{
+    display: block !important;
+    margin-top: 7px;
+    color: #FFFFFF;
+
+}.completeStep>i{
+     background: #0000f5 !important;
+
+ }
 /*Services Of Orator Show */
 #opratorSelectTitle {
     line-height: 2.5;
@@ -713,6 +731,11 @@ footer {
     content: '';
     display: inline-block;
     transform: rotate(-135deg);
+}
+.userInfoFOrBuyAdsl{
+    border: 1px solid #dadada;
+    background-color: #f9f9f9;
+    padding: 25px;
 }
 
 @media (max-width: 760px) {

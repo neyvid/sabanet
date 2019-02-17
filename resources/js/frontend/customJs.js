@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 var swiper = new Swiper('.swiper-container', {
     loop: false,
     autoplay: {
@@ -19,4 +20,9 @@ $('.ourServiceContentSign').click(function () {
     $(this).siblings('.childLi').slideToggle();
 
 });
-
+$(document).ready(function(){
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass   : 'iradio_flat-orange,icheckRadio'
+    })
+});

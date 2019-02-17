@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{asset('css/frontendCss.css')}}">
     {{--Swiper Css Of Slider--}}
     <link rel="stylesheet" href="{{asset('css/frontend/swiper.css')}}">
+    <!-- iCheck 1.0.1 -->
+    <link rel="stylesheet" href="{{asset('plugins/iCheck/all.css')}}">
+
     <!-- Bootstrap CSS And Bootstrap RTL That Changed With Gulp)-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

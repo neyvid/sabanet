@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\checkIsAdmin;
+use App\Http\Middleware\checkUserForBuyOnline;
 use App\Http\Middleware\RememberTokenIsExist;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -62,6 +64,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'RememberTokenIsExist'=>RememberTokenIsExist::class,
+        'checkUserForBuyOnline'=>checkUserForBuyOnline::class,
+        'checkIsAdmin'=>checkIsAdmin::class,
     ];
 
     /**

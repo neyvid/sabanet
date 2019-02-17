@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\UserChangePassword;
+use App\Http\Requests\userEditInfo;
 use App\Http\Requests\UserRegister;
 use App\Mail\sendResetPasswordLink;
 use App\Models\Permission\Permissions;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use Spatie\Permission\Models\Permission;
@@ -36,6 +38,10 @@ class UserController extends Controller
 
     public function showLogin()
     {
+//        $comingRoute = URL::previous();
+//        session(['comingRoute' =
+
+
         if (Auth::check()) {
             return redirect('/');
         }
@@ -44,9 +50,6 @@ class UserController extends Controller
 
     public function showRegister()
     {
-        if (Auth::check()) {
-            return redirect('/');
-        }
         return view('frontend.Auth.register');
     }
 
@@ -122,21 +125,24 @@ class UserController extends Controller
             $userCreate->assignRole(Roles::USER);
             $userCreate->givePermissionTo(Permissions::USERACCESS);
             Auth::login($userCreate, true);
-            return redirect('/');
+//            return redirect()->intended();
+            return redirect()->route('user.edit');
         }
-
-
     }
 
     public function doLogin(Request $request)
     {
+
 //        Get which login use(Email or Mobile) with filter_var
         $loginType = $this->authType($request->input('loginField'));
         if (Auth::attempt([$loginType => $request->input('loginField'), 'password' => $request->input('password')], $request->has('rememberMe') ? true : false)) {
-            return redirect('/');
-        } else {
-            return redirect()->back()->with('warning', 'اطلاعات کاربری نادرست است');
+            if (empty(Auth::user()->name)) {
+                return redirect()->route('user.edit');
+            }
+            return redirect()->intended();
         }
+        return redirect()->back()->with('warning', 'اطلاعات کاربری نادرست است');
+
 
     }
 
@@ -173,12 +179,57 @@ class UserController extends Controller
 
     public function assingRoleToUser()
     {
-        $user=$this->userRepository->find(1);
+        $user = $this->userRepository->find(1);
         $user->assignRole(Roles::MANAGER);
     }
+
     public function assignPermissionToUser()
     {
-        $user=$this->userRepository->find(1);
+        $user = $this->userRepository->find(1);
         $user->givePermissionTo(Permissions::TOTALACCESS);
+    }
+
+    public function addInfo()
+    {
+        $title = 'ویرایش اطلاعات شخصی';
+        $user = Auth::user();
+        return view('admin.user.edit', compact('title', 'user'));
+    }
+
+    public function update(userEditInfo $request)
+    {
+        $checkUserIsExist = $this->userRepository->all()->except(Auth::user()->id);
+        $findUserWithThisEmail = $checkUserIsExist->where('email', $request->email);
+        $fineUserWithThisMobile = $checkUserIsExist->where('mobile', $request->mobile);
+//       check in db is field with this email or mobile that user input
+        if (count($findUserWithThisEmail) == 0 && count($fineUserWithThisMobile) == 0) {
+            $update = $this->userRepository->update(Auth::id(), [
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'mobile' => $request->mobile,
+                'email' => $request->email,
+                'codemeli' => $request->codemeli,
+                'address' => $request->address,
+            ]);
+            if ($request->has('isCompany')) {
+                $update = $this->userRepository->update(Auth::id(), [
+                    'companyName' => $request->companyName,
+                    'economyCode' => $request->economyCode,
+                    'nationalCode' => $request->nationalCode,
+                    'registerNumber' => $request->registerNumber,
+                    'connectorName' => $request->connectorName,
+                    'connectorLastname' => $request->connectorLastname,
+                    'connectorMobile' => $request->connectorMobile,
+                    'connectorCodeMeli' => $request->connectorCodeMeli,
+                    'connectorEmail' => $request->connectorEmail,
+                    'companyAddress' => $request->companyAddress,
+                ]);
+            }
+            if ($update) {
+                return redirect()->route('showStep3');
+            }
+        }
+        return redirect()->back()->with('warning', 'قبلا با این موبایل و یا ایمیل در سیستم ثبت نام کرده اید');
+
     }
 }

@@ -5,39 +5,44 @@
             <div class="stepRowOrg">
                 <div class="row">
                     <div class="col-2 stepDiv">
-                        <i></i>
+                        <i>
+                            <i class="fa fa-check"></i>
+                        </i>
                         <span>
-                      پرداخت
+                            انتخاب سرویس و مودم
+
                         </span>
                     </div>
                     <div class="col-2 stepDiv">
-                        <i></i>
+                        <i>   <i class="fa fa-check"></i></i>
                         <span>
-                            قرارداد
+                            انتخاب خدمات تکمیلی
+
                         </span>
                     </div>
                     <div class="col-2 stepDiv">
-                        <i></i>
+                        <i>   <i class="fa fa-check"></i></i>
+                        <span>
+                            تکمیل اطلاعات
+                        </span>
+                    </div>
+                    <div class="col-2 stepDiv">
+                        <i>   <i class="fa fa-check"></i></i>
                         <span>
 بازبینی سفارش
+
                         </span>
                     </div>
                     <div class="col-2 stepDiv">
-                        <i></i>
+                        <i>   <i class="fa fa-check"></i></i>
                         <span>
-تکمیل اطلاعات
+قرارداد
                         </span>
                     </div>
                     <div class="col-2 stepDiv">
-                        <i></i>
+                        <i>   <i class="fa fa-check"></i></i>
                         <span>
-انتخاب خدمات تکمیلی
-                        </span>
-                    </div>
-                    <div class="col-2 stepDiv">
-                        <i></i>
-                        <span>
-انتخاب سرویس و مودم
+پرداخت
                         </span>
                     </div>
                 </div>
@@ -159,16 +164,35 @@
                 </script>
                 <div class="row mt-5 text-center justify-content-between">
                     <div class="col-4 next">
-                        <a href="" class="btn btn-primary btn-block btn-lg">ادامه</a>
+                        <a href="{{route('showStep3')}}" class="btn btn-primary btn-block btn-lg">ادامه</a>
                     </div>
                     <div class="col-4 return">
-                        <a class="btn btn-light btn-block btn-lg " href="">بازگشت</a>
+                        <a class="btn btn-light btn-block btn-lg back" href="{{route('checkSupport')}}">بازگشت</a>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <script>
+                function setStep(stepNum) {
+                    stepNum--;
+                    $('.stepRowOrg>div.row>div.stepDiv').removeClass('currentStep');
+                    $('.stepRowOrg>div.row>div.stepDiv:lt(' + stepNum + ')').addClass('completeStep');
+                    $('.stepRowOrg>div.row>div.stepDiv:eq(' + stepNum + ')').addClass('currentStep');
+                }
+                setStep(2);
+            </script>
+
+            {{--<script>--}}
+                {{--$(document).ready(function () {--}}
+                    {{--$('.back').on('click',function (e) {--}}
+                        {{--e.preventDefault();--}}
+
+                    {{--})--}}
+                {{--})--}}
+            {{--</script>--}}
 
         </div>
     </div>
+
 @endsection
-{{--@include('layout.frontend.footer')--}}
+

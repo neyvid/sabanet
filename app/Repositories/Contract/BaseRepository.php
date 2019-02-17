@@ -12,6 +12,10 @@ abstract class BaseRepository
     {
         return $this->model::all();
     }
+    public function getAllUserWithOutThisUser()
+    {
+        return $this->model::gett();
+    }
 
     public function create(array $data)
     {

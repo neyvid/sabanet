@@ -1,11 +1,11 @@
 @foreach($servicesOfOprator as $service)
     <div class="col-lg-3 order-lg-4 serviceWrap">
-        <a href="#" class="serviceContent" data-value="{{$service->id}}">
+        <a href="" class="serviceContent" data-value="{{$service->id}}">
             <img class="imageOfService" src="{{asset('images/frontend/imageOfService.png')}}" alt="">
             <h4 class="titleOfService">{{$service->name}}</h4>
             <h4 class="periodOfService">{{$service->period}}</h4>
             <p class="descOfService">{{$service->description}}</p>
-            <button class="selectBtnOfService btn btn-primary btn-block" href="">انتخاب</button>
+            <button class="selectBtnOfService btn btn-primary btn-block {{(session()->has('service') && session('service')->id==$service->id )? 'btn-success': ''}}" href="">انتخاب</button>
         </a>
     </div>
 @endforeach

@@ -117,8 +117,6 @@
                                     $(".telecom").select2("val", " ");
 
                                 })
-
-
                             }
 
                             // In your Javascript (external .js resource or <script> tag)
@@ -133,12 +131,8 @@
                                 $('.states').on('select2:select', function (e) {
                                     var stateId = e.params.data.id;
                                     showCitiesOfState(stateId);
-
                                 });
-
-
                             });
-
                         </script>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-info">ثبت</button>

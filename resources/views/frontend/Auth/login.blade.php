@@ -36,6 +36,9 @@
                             <div class="form-group text-left ">
                                 <a id="remembermeLink" href="">رمزعبوررافراموش کردید؟</a>
                             </div>
+                            <div class="form-group text-left ">
+                                <a id="remembermeLink" href="{{route('register')}}">هنوز ثبت نام نکرده اید؟</a>
+                            </div>
 
                             <div class="form-group">
                                 <input name="password" type="password" class="form-control PassInput" placeholder="کلمه عبور خود را وارد نمایید">

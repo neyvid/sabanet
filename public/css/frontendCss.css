@@ -605,8 +605,26 @@ footer {
 
 .stepRowOrg {
     height: 150px;
+    direction: rtl;
 }
 
+.currentStep > i {
+    background: #0000f5 !important;
+    border: none !important;
+}
+
+.fa-check {
+    display: none !important;
+}
+.completeStep>i>i{
+    display: block !important;
+    margin-top: 7px;
+    color: #FFFFFF;
+
+}.completeStep>i{
+     background: #0000f5 !important;
+
+ }
 /*Services Of Orator Show */
 #opratorSelectTitle {
     line-height: 2.5;
@@ -615,24 +633,26 @@ footer {
 .serviceShow {
     margin-top: 35px;
 }
+
 .serviceTitle {
     background: #da1f26;
     padding: 10px;
     color: white;
     border-radius: 3px;
-
     border: 0;
 }
 
 .serviceTitle > span {
     display: block;
 }
+
 .titleOfEquipment {
     border-bottom: 1px solid #eed1d3;
     margin: 0 0 40px 0;
     padding: 0 !important;
 }
-.titleOfEquipment>p{
+
+.titleOfEquipment > p {
     border: 1px solid #da1f26;
     display: inline-block;
     padding: 10px;
@@ -687,10 +707,11 @@ footer {
 }
 
 /*Button in adsl order*/
-.next>a{
+.next > a {
     color: #ffffff !important;
 }
-.next>a:before{
+
+.next > a:before {
     border: solid #ffffff;
     border-width: 0 0 3px 3px;
     padding: 3px;
@@ -698,17 +719,25 @@ footer {
     display: inline-block;
     transform: rotate(45deg);
 }
-.return>a{
-    color:#747474 !important;
+
+.return > a {
+    color: #747474 !important;
 }
-.return>a:after{
-    border: solid #747474 ;
+
+.return > a:after {
+    border: solid #747474;
     border-width: 0 0 3px 3px;
     padding: 3px;
     content: '';
     display: inline-block;
     transform: rotate(-135deg);
 }
+.userInfoFOrBuyAdsl{
+    border: 1px solid #dadada;
+    background-color: #f9f9f9;
+    padding: 25px;
+}
+
 
 @media (max-width: 760px) {
     .serviceWrap {

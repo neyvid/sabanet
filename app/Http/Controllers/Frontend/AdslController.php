@@ -14,6 +14,7 @@ use App\Repositories\StateRepository\StateRepository;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AdslController extends Controller
@@ -29,11 +30,12 @@ class AdslController extends Controller
         $this->areaCodeRepository = new AreacodeRepository();
     }
 
-    public function index()
+    public function registerAdslUser()
     {
+//        before go to this route all session of adsl deleting
+        session()->forget(['service', 'areacode', 'clientNumber', 'opratorId', 'net-equ', 'pc-equ']);
         $states = $this->stateRepository->all();
-        return view('frontend.adsl.register_adsl_form', compact('states'));
-
+        return view('frontend.adsl.registerAdslUser', compact('states'));
     }
 
     public function getCityFromStateId(int $stateId)
@@ -43,6 +45,34 @@ class AdslController extends Controller
         $citiesHtml = view('frontend.adsl.showCities.cities', compact('cities'))->render();
         return $citiesHtml;
     }
+
+    public function checkAdslSupportWithStateAndCity(Request $request)
+    {
+
+        $cityId = $request->city;
+        $stateId = $request->state;
+        $telNumber = $request->telNumber;
+        $areacode = substr($telNumber, 0, 4);
+        $clientTelNumber = $telNumber;
+        $currentAreacode = $this->areaCodeRepository->findBy(['city_id' => $cityId, 'state_id' => $stateId, 'areacode' => $areacode]);
+        if (!$currentAreacode) {
+            return redirect()->back()->with('warning', 'چنین پیش شماره ای در این شهر و استان موجود نمی باشد');
+        }
+        if (session()->has('areacode') && session()->has('clientNumber')) {
+            session()->forget(['areacode', 'clientNumber']);
+        }
+        session(['areacode' => $currentAreacode, 'clientNumber' => $clientTelNumber]);
+        return view('frontend.adsl.step1');
+    }
+
+    public function showStep1()
+    {
+        if (!session()->has('opratorId')) {
+            return $this->registerAdslUser();
+        }
+        return view('frontend.adsl.step1');
+    }
+
 
     public function chekAdslSupport(Request $request)
     {
@@ -72,23 +102,6 @@ class AdslController extends Controller
         return $adslCheckAnswer;
     }
 
-    public function checkAdslSupportWithStateAndCity(Request $request)
-    {
-        $cityId = $request->city;
-        $stateId = $request->state;
-        $telNumber = $request->telNumber;
-        $areacode = substr($telNumber, 0, 4);
-        $check = $this->areaCodeRepository->findBy(['city_id' => $cityId, 'state_id' => $stateId, 'areacode' => $areacode]);
-        if (!$check) {
-            return redirect()->back()->with('warning', 'چنین پیش شماره ای در این شهر و استان موجود نمی باشد');
-        }
-        if (session()->has('areacode')) {
-            session()->forget('areacode');
-        }
-        session(['areacode' => $check]);
-        return view('frontend.adsl.registerProcess');
-    }
-
     public function showServiceOfOprator(Request $request)
     {
         $opratorId = $request->opratorId;
@@ -101,7 +114,6 @@ class AdslController extends Controller
         $servicesOfOprator = $oprator->services;
         $serviceView = view('frontend.adsl.showservice', compact('servicesOfOprator'))->render();
         return $serviceView;
-
     }
 
     public function addServiceForUser(Request $request)
@@ -114,19 +126,20 @@ class AdslController extends Controller
                 session()->forget('service');
             }
             session(['service' => $service]);
+            return 'true';
         }
-        return redirect()->back();
+
     }
 
     public function showEquipmentOFService()
     {
         if (!session()->has('service')) {
-            return redirect()->back(302);
+            return redirect()->back()->with('warning', 'لطفا ابتدا یکی از سرویس ها را انتخاب نمایید');
         }
         $productRepository = new ProductRepository();
         $productsForNetwork = $productRepository->all()->where('product_type', ProductType::NETWORK_EQUIPMENT);
         $productsForPc = $productRepository->all()->where('product_type', ProductType::PC_EQUIPMENT);
-        return view('frontend.adsl.showproducts', compact('productsForNetwork', 'productsForPc'));
+        return view('frontend.adsl.step2', compact('productsForNetwork', 'productsForPc'));
 
     }
 
@@ -143,9 +156,20 @@ class AdslController extends Controller
         }
 
         return session()->all();
-
-
     }
 
-}
+    public function showStep3()
+    {
+        if (empty(Auth::user()->name)) {
+//            return redirect()->route('user.edit');
+            return redirect()->route('frontend.user.addinfo');
+        }
+//        if autheticate is true and name is not empty
+        return view('frontend.adsl.step3');
+    }
 
+    public function goback(Request $request)
+    {
+        return view('frontend.adsl.step' . $request->number);
+    }
+}
