@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col text-center">
 
-                    <div class="alert alert-warning thanksTitle" role="alert">
+                    <div class="alert alert-warning thanksTitle mt-4" role="alert">
                         از حسن سلیقه شما برای انتخاب ما سپاسگزاریم
                         <br>
                         لطفا جهت مشاهده شرایط ارایه سرویس ، شماره تلفن خود را وارد فرمایید

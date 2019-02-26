@@ -586,7 +586,7 @@ footer {
     border-radius: 50%;
     display: block;
     position: relative;
-    border: 1px solid #403c3c;
+    border: 1px solid #c8c8c8;
 
 }
 
@@ -594,7 +594,7 @@ footer {
     content: "";
     position: absolute;
     top: 16px;
-    border-top: 2px dotted #322c2c;
+    border-top: 2px dotted #b9b9b9;
     width: 100%;
 }
 
@@ -609,7 +609,7 @@ footer {
 }
 
 .currentStep > i {
-    background: #0000f5 !important;
+    background:#38c172 !important;
     border: none !important;
 }
 
@@ -622,7 +622,8 @@ footer {
     color: #FFFFFF;
 
 }.completeStep>i{
-     background: #0000f5 !important;
+     background: #38c172 !important;
+     border-color: #38c172;
 
  }
 /*Services Of Orator Show */
@@ -738,7 +739,22 @@ footer {
     padding: 25px;
 }
 
-
+.reviewOrderTitle{
+    color: #008036;
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px 0px #eaeaea;
+}
+.returnOfBankWrap{
+    height: 300px;
+}
+.OrderStatusIcon > .ok {
+    color: #38c172;
+}
+.OrderStatusIcon > .nok {
+    color: #c1293f;
+}
 @media (max-width: 760px) {
     .serviceWrap {
         margin-bottom: 20px;

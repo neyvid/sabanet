@@ -105,23 +105,35 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::post('/checkSupport', 'AdslController@checkAdslSupportWithStateAndCity')->name('checkSupport');
     Route::get('/checkSupport', 'AdslController@showStep1')->name('showStep1');
+    Route::get('/sessiondelete', 'AdslController@deletesession')->name('deletesession');
+
 //    Route::post('/registerAdslUser', 'AdslController@checkAdslSupportWithStateAndCity')->name('checkSupport');
 
 //    when come in of top route,for show service of oprator of areacode (ajax)
     Route::post('/showServiceOfOprator/{opratorId}', 'AdslController@showServiceOfOprator')->name('showServiceOfOprator');
 //    when click on one service of oprator (ajax)
     Route::post('/addServiceForUser/{serviceId}', 'AdslController@addServiceForUser')->name('addServiceForUser');
-
     Route::get('/showEquipmentOFService', 'AdslController@showEquipmentOFService')->name('showEquipmentOFService');
-    Route::get('/infoOfUser', 'AdslController@showStep3')->middleware('auth')->name('showStep3');
+
     Route::group(['middleware' => 'auth'], function () {
+        Route::get('/infoOfUser', 'AdslController@showStep3')->name('showStep3');
+        Route::get('/ordercontract', 'AdslController@showStep5')->name('showStep5');
+        Route::post('/ordercontract', 'AdslController@confirmContract')->name('showStep5');
+
+        Route::get('/order/create', 'OrderController@create')->name('orderCreate');
+        Route::get('/order/verifyPayment', 'OrderController@verifyPayment')->name('verifyPayment');
         Route::post('/user/edit', 'UserController@update')->name('frontend.user.update');
         Route::get('/user/edit', 'UserController@addInfo')->name('frontend.user.addinfo');
+        Route::post('/typeselection/', 'AdslController@typeselection')->name('typeselection');
+        Route::post('/typeselectionAjax/{userType?}', 'AdslController@typeselectionAjax')->name('typeselectionAjax');
+        Route::get('/ordercontroll', 'AdslController@orderController')->name('orderControllerShow');
+        Route::get('/orderreview', 'AdslController@orderReview')->name('orderReviewShow');
+        Route::get('/returnOrder', 'OrderController@returnGateway')->name('returnGateway');
 
 
     });
-    Route::get('/goBack/{number}', 'AdslController@goback')->name('goback');
 
+    Route::get('/goBack/{number}', 'AdslController@goback')->name('goback');
 
     Route::post('/addEquipmentForUser/{equType}/{equipmentId}', 'AdslController@addEquipmentForUser')->name('addEquipmentForUser');
 

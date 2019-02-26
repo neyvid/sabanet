@@ -77,7 +77,7 @@
                                              alt="{{$productforNet->name}}">
                                         <h4 class="titleOfService">{{$productforNet->name}}</h4>
                                         <p class="descOfService">{{$productforNet->description}}</p>
-                                        <button class="selectBtnOfService btn btn-primary btn-block" href="">انتخاب
+                                        <button class="selectBtnOfService btn {{session('net-equ')['id']== $productforNet->id ? 'btn-success': 'btn-primary'}} btn-block" href="">انتخاب
                                         </button>
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                                              alt="{{$productforNet->name}}">
                                         <h4 class="titleOfService">{{$productForPc->name}}</h4>
                                         <p class="descOfService">{{$productForPc->description}}</p>
-                                        <button class="selectBtnOfService btn btn-primary btn-block" href="">انتخاب
+                                        <button class="selectBtnOfService btn {{session('pc-equ')['id']== $productForPc->id ? 'btn-success': 'btn-primary'}}  btn-block" href="">انتخاب
 
                                         </button>
                                     </a>
@@ -183,12 +183,12 @@
             </script>
 
             {{--<script>--}}
-                {{--$(document).ready(function () {--}}
-                    {{--$('.back').on('click',function (e) {--}}
-                        {{--e.preventDefault();--}}
+            {{--$(document).ready(function () {--}}
+            {{--$('.back').on('click',function (e) {--}}
+            {{--e.preventDefault();--}}
 
-                    {{--})--}}
-                {{--})--}}
+            {{--})--}}
+            {{--})--}}
             {{--</script>--}}
 
         </div>

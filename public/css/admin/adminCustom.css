@@ -88,7 +88,7 @@ input:checked + .slider:before {
     height: 900px !important;
 }
 @media (min-width: 1200px) {
-   .userInfo{
+    .userInfo{
         border-left: 1px solid #c5c5c5 !important;
     }
 }
@@ -97,4 +97,3 @@ input:checked + .slider:before {
     cursor: default;
     opacity: 0.6;
 }
-

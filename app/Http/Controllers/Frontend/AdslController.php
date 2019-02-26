@@ -11,6 +11,7 @@ use App\Repositories\opratorRepository\OpratorRepository;
 use App\Repositories\ProductRepository\ProductRepository;
 use App\Repositories\ServiceRepository\ServiceRepository;
 use App\Repositories\StateRepository\StateRepository;
+use App\Services\CalculateTotalPrice\calculateTotalPrice;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,7 +49,7 @@ class AdslController extends Controller
 
     public function checkAdslSupportWithStateAndCity(Request $request)
     {
-
+//        check telnumber that comming (validation)
         $cityId = $request->city;
         $stateId = $request->state;
         $telNumber = $request->telNumber;
@@ -110,7 +111,8 @@ class AdslController extends Controller
         if (session()->has('opratorId')) {
             session()->forget('opratorId');
         }
-        session(['opratorId' => $opratorId]);
+//        session(['opratorId' => $opratorId]);
+        session(['opratorId' => $oprator->name]);
         $servicesOfOprator = $oprator->services;
         $serviceView = view('frontend.adsl.showservice', compact('servicesOfOprator'))->render();
         return $serviceView;
@@ -133,8 +135,13 @@ class AdslController extends Controller
 
     public function showEquipmentOFService()
     {
+        if(!session()->has(['areacode','clientNumber'])){
+            return redirect()->route('checkSupport');
+
+        }
         if (!session()->has('service')) {
-            return redirect()->back()->with('warning', 'لطفا ابتدا یکی از سرویس ها را انتخاب نمایید');
+            return redirect()->route('checkSupport')->with('warning', 'لطفا ابتدا یکی از سرویس ها را انتخاب نمایید');
+//            return redirect()->back()->with('warning', 'لطفا ابتدا یکی از سرویس ها را انتخاب نمایید');
         }
         $productRepository = new ProductRepository();
         $productsForNetwork = $productRepository->all()->where('product_type', ProductType::NETWORK_EQUIPMENT);
@@ -145,6 +152,30 @@ class AdslController extends Controller
 
     public function addEquipmentForUser(Request $request)
     {
+//        $productId = $request->equipmentId;
+//        if(session()->has('products.'.$productId)){
+//            session()->forget(['products.'.$productId]);
+//
+//        }else{
+////            session()->forget(['products.'.[$productId]]);
+//            $productRepository = new ProductRepository();
+//            $product = $productRepository->find($productId);
+//            session(['products.'.$productId=>$product]);
+//        }
+//
+
+//        if ($request->equipmentId == session('product')['id']) {
+//            session()->forget('product'.[$request->equipmentId]);
+//        } else {
+//            session()->forget($request->equType);
+//            $productId = $request->equipmentId;
+//            $productRepository = new ProductRepository();
+//            $product = $productRepository->find($productId);
+//            session(['products'.$request->equipmentId => $product]);
+////            session([$request->equType => $product]);
+//        }
+
+//        return session()->all();
         if ($request->equipmentId == session($request->equType)['id']) {
             session()->forget($request->equType);
         } else {
@@ -154,12 +185,14 @@ class AdslController extends Controller
             $product = $productRepository->find($productId);
             session([$request->equType => $product]);
         }
-
         return session()->all();
     }
 
     public function showStep3()
     {
+        if(!session()->has(['areacode','service','clientNumber'])){
+            return redirect()->route('checkSupport');
+        }
         if (empty(Auth::user()->name)) {
 //            return redirect()->route('user.edit');
             return redirect()->route('frontend.user.addinfo');
@@ -171,5 +204,86 @@ class AdslController extends Controller
     public function goback(Request $request)
     {
         return view('frontend.adsl.step' . $request->number);
+    }
+
+
+    public function typeselection(Request $request)
+    {
+        if ($request->userType == 1 && Auth::user()->companyName == null) {
+            return redirect()->back()->with('warning', 'درخواست خرید برای سازمان و یا شرکت نیاز به ثبت اطلاعات شرکت دارد، لطفا از لینک زیر ابتدا اطلاعات شرکت خود را ثبت نمایید.');
+        }
+        return redirect()->route('orderControllerShow', ['userType' => $request->userType]);
+    }
+
+    public function typeselectionAjax(Request $request)
+    {
+        if ($request->userType == 1 && Auth::user()->companyName == null) {
+            $viewOfError = \view('frontend.adsl.buyTypeView.showCompanyError')->render();
+            return $viewOfError;
+        } else {
+            $vieOfCompanyDetail = \view('frontend.adsl.buyTypeView.showCompanyDetail')->render();
+            return $vieOfCompanyDetail;
+        }
+
+    }
+
+    public function ordercontroller(Request $request)
+    {
+        $userType = $request->userType;  //0 is normal and 1 is company
+        if (session()->has(['areacode', 'clientNumber', 'opratorId', 'service'])) {
+            if (session()->has('userType')) {
+                session()->forget('userType');
+            }
+            session(['userType' => $userType]);
+            return redirect()->route('orderReviewShow');
+        }
+        return redirect()->route('checkSupport')->with('warning', 'خطایی رخ داده است لطفا مجددا سعی نمایید');
+    }
+
+
+    public function orderReview()
+    {
+        if(!session()->has(['areacode','clientNumber','service','userType'])){
+            return redirect()->route('checkSupport');
+        }
+        $equpments=calculateTotalPrice::checkIsEquipmentInOrder();
+        $buyType = session()->get('userType'); //0 is normal and 1 is company
+        $service = session()->get('service');
+        return view('frontend.adsl.step4', compact('equpments', 'service'));
+
+    }
+
+    public function showStep5()
+    {
+        if(!session()->has(['areacode','clientNumber','service','userType'])) {
+            return redirect()->route('checkSupport');
+
+        }
+        return view('frontend.adsl.orderContract');
+    }
+
+    public function confirmContract(Request $request)
+    {
+//        Other Method for Session Remove Check (attention) remember me
+        if(!session()->has(['areacode','clientNumber','service','userType'])) {
+            return redirect()->route('checkSupport');
+
+        }
+        if (session()->has('confirmContract')) {
+            session()->remove('confirmContract');
+        }
+        if ($request->confirmContract == 1) {
+            session(['confirmContract' => $request->confirmContract]);
+            $equpments = calculateTotalPrice::checkIsEquipmentInOrder();
+            $priceInfo = calculateTotalPrice::calculateTotalPrice(session('service'), $equpments);
+//            return redirect()->route('showStep5');
+            return view('frontend.adsl.step5',compact('priceInfo'));
+        } else {
+            return redirect()->back()->with('warning', 'برای ادامه می بایست حتما قرار داد را مطالعه نمایید و آنرا تایید کنید');
+        }
+    }
+    public function deletesession(){
+        session()->forget(['areacode', 'clientNumber', 'opratorId', 'service', 'net-equ', 'pc-equ','userType','confirmContract']);
+
     }
 }

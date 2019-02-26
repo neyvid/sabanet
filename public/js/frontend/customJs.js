@@ -631,7 +631,9 @@ $('.ourServiceContentSign').click(function () {
 $(document).ready(function () {
   $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
     checkboxClass: 'icheckbox_flat-blue',
-    radioClass: 'iradio_flat-orange'
+    radioClass: 'iradio_flat-orange icheckRadio',
+    // determinateRadioClass: 'aaaaaaaaaaaaa',
+    indeterminateCheckboxClass: 'bbbbbbb'
   });
 });
 
