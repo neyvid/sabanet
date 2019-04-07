@@ -24,6 +24,12 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+
+    }
+
     public function scopeGett($query)
     {
         return $query->where('id','!=',Auth::user()->id);

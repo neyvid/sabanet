@@ -8,27 +8,28 @@
                 <img src="{{asset('images/admin/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-right info">
-                <p>{{Auth::user()->name}}</p>
+                <p>{{Auth::user()->name. Auth::user()->lastname}}</p>
                 {{--<a href="#"><i class="fa fa-circle text-success"></i>آنلاین</a>--}}
             </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="جستجو">
-                <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+    {{--<form action="#" method="get" class="sidebar-form">--}}
+    {{--<div class="input-group">--}}
+    {{--<input type="text" name="q" class="form-control" placeholder="جستجو">--}}
+    {{--<span class="input-group-btn">--}}
+    {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+    {{--</button>--}}
+    {{--</span>--}}
+    {{--</div>--}}
+    {{--</form>--}}
+    <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li class="header">منو</li>
 
             @role(\App\Models\Roles\Roles::MANAGER)
+            <li class="header">منو</li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-flag"></i> <span>مدیریت استان ها</span>
@@ -109,7 +110,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-sort-numeric-desc"></i> <span>مدیریت دسته بندی ها</span>
+                    <i class="fa fa-server"></i> <span>مدیریت دسته بندی ها</span>
                     <span class="pull-left-container">
               <i class="fa fa-angle-right pull-left"></i>
             </span>
@@ -124,7 +125,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-sort-numeric-desc"></i> <span>مدیریت محصولات</span>
+                    <i class="fa fa-product-hunt"></i> <span>مدیریت محصولات</span>
                     <span class="pull-left-container">
               <i class="fa fa-angle-right pull-left"></i>
             </span>
@@ -137,23 +138,89 @@
 
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-shopping-cart"></i> <span>مدیریت سفارش ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.orders.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            سفارش ها</a></li>
+                    <li><a href="{{route('profile.orders.create')}}"><i class="fa fa-circle-o"></i>تعریف سفارش
+                            جدید</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>مدیریت کاربران</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.users.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            کاربران</a></li>
+                    <li><a href="{{route('profile.user.create')}}"><i class="fa fa-circle-o"></i>تعریف کاربر
+                            جدید</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-text"></i> <span>مدیریت مقاله ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.articles.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            مقاله ها</a></li>
+                    <li><a href="{{route('profile.article.create')}}"><i class="fa fa-circle-o"></i>ایجاد مقاله
+                            جدید</a></li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-comments-o"></i> <span>مدیریت دیدگاه ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.comments.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            دیدگاه ها</a></li>
+                    <li><a href="{{route('profile.article.create')}}"><i class="fa fa-circle-o"></i>ایجاد دیدگاه
+                            جدید</a></li>
+                </ul>
+            </li>  <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file"></i> <span>مدیریت فایل ها</span>
+                    <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{route('profile.attachment.list')}}"><i class="fa fa-circle-o"></i>لیست
+                            فایل ها </a></li>
+                    {{--<li><a href="{{route('profile.article.create')}}"><i class="fa fa-circle-o"></i>ایجاد فایل--}}
+                    {{--جدید</a></li>--}}
+                </ul>
+            </li>
             @endrole
+
+
             <li class="header">حساب کاربری من</li>
             <li><a href="{{route('user.index')}}"><i class="fa fa-user text-yellow"></i> <span>پروفایل</span></a></li>
-            {{--<li class="treeview">--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-sort-numeric-desc"></i> <span>حساب کاربری من</span>--}}
-                    {{--<span class="pull-left-container">--}}
-              {{--<i class="fa fa-angle-right pull-left"></i>--}}
-            {{--</span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li class="active"><a href="{{route('profile.product.list')}}"><i class="fa fa-circle-o"></i>لیست--}}
-                            {{--محصولات</a></li>--}}
-                    {{--<li><a href="{{route('profile.product.create')}}"><i class="fa fa-circle-o"></i>تعریف محصول--}}
-                            {{--جدید</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+            <li><a href="{{route('user.orders')}}"><i class="fa fa-shopping-cart text-yellow"></i>
+                    <span>سفارش های من</span></a></li>
+
+            <li><a href="{{route('user.comment')}}"><i class="fa fa-comments-o text-yellow"></i>
+                    <span>دیدگاه های من</span></a></li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

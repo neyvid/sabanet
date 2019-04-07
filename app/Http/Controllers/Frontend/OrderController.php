@@ -31,9 +31,10 @@ class OrderController extends Controller
             $service = session('service');
             $userType = session('userType');
             $clientNumber = session('clientNumber');
-            session()->forget(['areacode', 'clientNumber', 'opratorId', 'service', 'net-equ', 'pc-equ', 'userType', 'confirmContract']);
             $equpments = calculateTotalPrice::checkIsEquipmentInOrder();
             $priceInfo = calculateTotalPrice::calculateTotalPrice($service, $equpments);
+            session()->forget(['areacode', 'clientNumber', 'opratorId', 'service', 'net-equ', 'pc-equ', 'userType', 'confirmContract']);
+
             $orderItemsForInsert = [];
             if ($equpments != null) {
                 foreach (array_values($equpments) as $equip) {

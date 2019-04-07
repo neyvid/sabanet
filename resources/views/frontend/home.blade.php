@@ -200,4 +200,38 @@
             </div>
         </div>
     </div>
+    @if(count($articles)>0)
+        <div class="ourNews">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 ourNewsTitle">
+                        <span>مقالات و آموزش ها</span>
+                    </div>
+                </div>
+
+                    <div class="row">
+                        @foreach($articles as $article)
+                            <div class="col-lg-3 OurNewsContent">
+                                <a href="{{route('article.show',[$article->id])}}">
+
+                                    <img width="100%" height="120px"
+                                         src="/media/{{($article->attachments->first()['name'])}}"
+                                         alt="{{$article->title}}">
+                                    <h2 class="h5">{{$article->title}}</h2>
+                                    <time> ۲۹آذر<i class="fa fa-clock-o"></i></time>
+                                    <p dir="rtl">
+                                        {{$article->description}}
+                                    </p>
+                                </a>
+                            </div>
+
+                        @endforeach
+                        <div class="col-lg-12 text-right">
+                            <button class="btn btn-info"> آرشیو مقالات و آموزش ها</button>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    @endif
 @endsection

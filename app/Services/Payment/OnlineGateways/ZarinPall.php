@@ -63,11 +63,14 @@ class ZarinPall extends OnlineGateway
                         'Authority' => $Authority,
                         'Amount' => $currentOrder->payable_amount,
                     ]
+
                 );
 
                 if ($result->Status == 100) {
                     $currentOrder->status = OrdersStatus::PAID;
+                    $currentOrder->refId = $result->RefID;
                     $currentOrder->save();
+
                     return view('frontend.Order.returnOkGateway', ['status' => $result]);
 //                return 'Transaction success. RefID:'.$result->RefID.Carbon::now()->format('Y');
                 } else {

@@ -609,23 +609,27 @@ footer {
 }
 
 .currentStep > i {
-    background:#38c172 !important;
+    background: #38c172 !important;
     border: none !important;
 }
 
 .fa-check {
     display: none !important;
 }
-.completeStep>i>i{
+
+.completeStep > i > i {
     display: block !important;
     margin-top: 7px;
     color: #FFFFFF;
 
-}.completeStep>i{
-     background: #38c172 !important;
-     border-color: #38c172;
+}
 
- }
+.completeStep > i {
+    background: #38c172 !important;
+    border-color: #38c172;
+
+}
+
 /*Services Of Orator Show */
 #opratorSelectTitle {
     line-height: 2.5;
@@ -733,30 +737,117 @@ footer {
     display: inline-block;
     transform: rotate(-135deg);
 }
-.userInfoFOrBuyAdsl{
+
+.userInfoFOrBuyAdsl {
     border: 1px solid #dadada;
     background-color: #f9f9f9;
     padding: 25px;
 }
 
-.reviewOrderTitle{
+.reviewOrderTitle {
     color: #008036;
     border: 1px solid #dbdbdb;
     padding: 10px;
     border-radius: 3px;
     box-shadow: 0px 0px 4px 0px #eaeaea;
 }
-.returnOfBankWrap{
+
+.returnOfBankWrap {
     height: 300px;
 }
+
 .OrderStatusIcon > .ok {
     color: #38c172;
 }
+
 .OrderStatusIcon > .nok {
     color: #c1293f;
 }
+
 @media (max-width: 760px) {
     .serviceWrap {
         margin-bottom: 20px;
     }
+}
+.titleOfComments{
+    border-bottom: 1px solid #ddd;
+}
+.titleOfComments > i,.titleOfComments >h4 {
+    color: #2fa360;
+}
+.titleOfComments >h4{
+    vertical-align: bottom;
+}
+.comment_wrap{
+    border: 1px solid #e8e8e8;
+    padding: 20px 0;
+    background: #fbfbfb;
+
+}
+.personIcon>i{
+    color: #cfcfcf;
+}
+.personIcon{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.comment_user_name,.comment_date{
+    color: #555353;
+    margin-bottom: 10px !important;
+}
+.comment_date{
+    font-size: 11px;
+}
+.answer_wrap {
+    margin: 0 auto;
+
+    margin-top: 0px;
+
+    border: 1px solid #029002;
+
+    padding: 10px;
+
+    border-radius: 3px;
+
+    margin-top: 20px;
+}
+.answerIcon >a> i {
+    color: green;
+}
+
+.answerIcon >a> span {
+    color: green;
+}
+.comment_form_wrap{
+    border: 1px solid #dde1e6;
+
+    border-radius: 5px;}
+.commentForm_title{
+    padding: 15px;
+    background: #2fa360;
+    color: #ffffff;
+}
+.commentForm_title>i{
+    font-size: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 5px;
+}.commentForm_title>span{
+    font-size: 16px;
+     vertical-align: middle;
+}
+.commentForm_body{
+    background: #f7fffa;
+}
+.postContent{
+    padding: 0 20px;
+}
+.deleteReplyForm{
+    display: block;
+    font-size: 13px !important;
+    color: #001370;
+    cursor: pointer;
+}
+.replyBtn>span{
+    cursor: pointer;
 }

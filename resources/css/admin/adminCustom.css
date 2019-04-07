@@ -97,3 +97,33 @@ input:checked + .slider:before {
     cursor: default;
     opacity: 0.6;
 }
+.orderTr>td,th{
+    vertical-align: middle !important;
+}
+#showDateInOrderItems{
+    font-size: 11px;
+    color: #777474;
+}
+.orderDetailModal>div{
+    border: 1px solid #b8b8b8;
+    padding: 8px;
+    margin-bottom: 5px !important;
+}
+
+.orderDetailModal > div > span {
+   display: block;
+    padding: 3px;
+}
+.orderDetailModal > div > span >span{
+    color: #000095;
+}
+button.actionBtn{
+    margin-right: 10px;
+}
+@media (max-width: 1200px) {
+    button.actionBtn{
+        margin-top: 10px;
+        margin-right: 0px;
+
+    }
+}

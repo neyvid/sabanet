@@ -191,6 +191,25 @@
         <!-- /.tab-pane -->
     </div>
 </aside>
+<script>
+    tinymce.init({
+        selector: 'textarea#mytextarea',
+        plugins : 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 300,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1')
+        //bootstrap WYSIHTML5 - text editor
+        $('.textarea').wysihtml5()
+    })
+</script>
+
 <!-- /.control-sidebar -->
 <!-- Add the sidebar's background. This div must be placed
      immediately after the control sidebar -->
@@ -237,7 +256,7 @@
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('bower_components/ckeditor/ckeditor.js')}}"></script>
-
+<script src="{{asset('bower_components/ckfinder/ckfinder/ckfinder.js')}}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 {{--<script src="dist/js/adminlte.min.js"></script>--}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -247,6 +266,14 @@
 <script src="{{asset('js/admin/adminJs.js')}}"></script>
 <script src="{{asset('js/admin/customAdminJs.js')}}"></script>
 <script type="application/javascript" src="{{asset('bower_components/select2/dist/js/select2.min.js')}}"></script>
-
+<script>
+    $(document).ready(function () {
+        $(function () {
+            CKEDITOR.replace('articleBody');
+            $('.textarea').wysihtml5();
+        });
+        CKFinder.setupCKEditor(null, 'http://sabanet.com/media/');
+    });
+</script>
 </body>
 </html>

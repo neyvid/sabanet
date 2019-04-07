@@ -1,22 +1,28 @@
-.deleteColor{
+.deleteColor {
     color: #b90000;
 }
-.editColor{
+
+.editColor {
     color: #2a8544;
 }
-.swal-modal{
+
+.swal-modal {
     font-family: Vazir !important;
 }
-.swal-footer{
+
+.swal-footer {
     float: right !important;
 }
-.swal-button-container{
+
+.swal-button-container {
     float: left !important;
 }
-.opratorLable{
+
+.opratorLable {
     display: block !important;
     margin-bottom: 10px !important;
 }
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
@@ -24,7 +30,8 @@
     width: 60px;
     height: 34px;
 }
-#align--5{
+
+#align--5 {
     vertical-align: -5px;
 }
 
@@ -83,17 +90,66 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-.userInfo,.companyInfo {
+
+.userInfo, .companyInfo {
     margin: 20px 0 !important;
     height: 900px !important;
 }
+
 @media (min-width: 1200px) {
-    .userInfo{
+    .userInfo {
         border-left: 1px solid #c5c5c5 !important;
     }
 }
-.disable{
+
+.disable {
     pointer-events: none;
     cursor: default;
     opacity: 0.6;
+}
+
+.orderTr > td, th {
+    vertical-align: middle !important;
+}
+
+#showDateInOrderItems {
+    font-size: 11px;
+    color: #777474;
+}
+
+.orderDetailModal > div {
+    border: 1px solid #b8b8b8;
+    padding: 8px;
+    margin-bottom: 5px !important;
+}
+
+.orderDetailModal > div > p {
+    background: whitesmoke;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.orderDetailModal > div > p {
+    background: whitesmoke;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.orderDetailModal > div > span {
+    display: block;
+    padding: 3px;
+}
+
+.orderDetailModal > div > span >span{
+    color: #000095;
+}
+button.actionBtn{
+    margin-right: 10px;
+
+}
+@media (max-width: 1200px) {
+    button.actionBtn{
+        margin-top: 10px;
+        margin-right: 0px;
+    }
 }

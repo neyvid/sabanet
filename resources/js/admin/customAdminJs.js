@@ -15,17 +15,16 @@ $(function () {
                 "sNext": "بعدی",
                 "sLast": "آخرین"
             }
-        }
-    });
-    $('#example2').DataTable({
-        'paging': true,
+        },
+        'paging': false,
         'lengthChange': false,
-        'searching': false,
+        'searching': true,
         'ordering': true,
-        'info': true,
+        'info': false,
         'autoWidth': false,
+        
+    });
 
-    })
 
 });
 $(document).ready(function(){
@@ -34,6 +33,7 @@ $(document).ready(function(){
         radioClass   : 'iradio_flat-blue'
     })
 });
+
 
 
 

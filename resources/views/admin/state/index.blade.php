@@ -4,8 +4,12 @@
     <h1>
         داشبرد
         <small>کنترل پنل</small>
-    </h1>
-    {{ Breadcrumbs::render('profile.state.list') }}
+    </h1>3
+
+    <ol class="breadcrumb">
+        {{ Breadcrumbs::render('profile.state.list') }}
+
+    </ol>
 @endsection
 
 @section('adminContent')

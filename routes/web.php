@@ -8,9 +8,15 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Admin', 'middleware' => 'au
     Route::get('/user', 'userController@index')->name('user.index');
     Route::get('/user/edit', 'userController@edit')->name('user.edit');
     Route::post('/user/edit', 'userController@update')->name('user.update');
+    Route::get('/user/orders', 'orderController@index')->name('user.orders');
+    Route::get('/user/comment', 'AdminCommentController@commentOfUser')->name('user.comment');
+    Route::get('/user/orders/pay/{orderId}', 'orderController@pay')->name('user.orders.pay');
+    Route::get('/user/orders/detail/{orderId}', 'orderController@showOrderDetails')->name('orderItemDetail');
+
 
     Route::group(['middleware' => 'checkIsAdmin'], function () {
         //    Routes For States
+
         Route::get('/states', 'StateController@index')->name('profile.state.list'); //show All States
         Route::get('/states/create', 'StateController@create')->name('profile.state.create'); //Show Form for Create State
         Route::post('/states/create', 'StateController@store')->name('profile.state.store'); //state store into database
@@ -69,8 +75,45 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Admin', 'middleware' => 'au
         Route::get('product/delete', 'ProductController@destroy')->name('profile.product.delete'); //delete product
         Route::get('product/edit', 'ProductController@edit')->name('profile.product.edit');// show Form for Edit product
         Route::post('product/edit', 'ProductController@update')->name('profile.product.update'); //store edit of product in database
-    });
 
+//   Routes For Orders
+        Route::get('orders', 'AdminOrderController@index')->name('profile.orders.list'); //show All Orders
+        Route::get('order/create', 'AdminOrderController@create')->name('profile.orders.create'); //Show Form for create Orders
+        Route::post('order/create', 'AdminOrderController@store')->name('profile.orders.store'); //store Order into database
+        Route::get('order/delete', 'AdminOrderController@destroy')->name('profile.orders.delete'); //delete Order
+        Route::get('order/edit', 'AdminOrderController@edit')->name('profile.orders.edit');// show Form for Edit Order
+        Route::post('order/edit', 'AdminOrderController@update')->name('profile.orders.update'); //store edit of Order in database
+//   Routes For Users
+        Route::get('users', 'AdminUserController@index')->name('profile.users.list'); //show All users
+        Route::get('user/admin/create', 'AdminUserController@create')->name('profile.user.create'); //Show Form for create users
+        Route::post('user/admin/create', 'AdminUserController@store')->name('profile.user.store'); //store users into database
+        Route::get('user/admin/delete', 'AdminUserController@destroy')->name('profile.user.delete'); //delete users
+        Route::get('user/admin/edit', 'AdminUserController@edit')->name('profile.user.edit');// show Form for Edit users
+        Route::post('user/admin/edit', 'userController@update')->name('profile.user.update'); //store edit of users in database
+    });
+//   Routes For Article
+        Route::get('articles', 'ArticleController@index')->name('profile.articles.list'); //show All articles
+        Route::get('article/create', 'ArticleController@create')->name('profile.article.create'); //Show Form for create article
+        Route::post('article/create', 'ArticleController@store')->name('profile.article.store'); //store article into database
+        Route::get('article/delete', 'ArticleController@destroy')->name('profile.article.delete'); //delete article
+        Route::get('article/edit', 'ArticleController@edit')->name('profile.article.edit');// show Form for Edit article
+        Route::post('article/edit', 'ArticleController@update')->name('profile.article.update'); //store edit of article in database
+
+
+//   Routes For comments
+        Route::get('comments', 'AdminCommentController@index')->name('profile.comments.list'); //show All comments
+        Route::get('comments/status/{status}', 'AdminCommentController@changeStatus')->name('profile.comments.status.change'); //change status of comments
+        Route::get('comment/create', 'AdminCommentController@create')->name('profile.comment.create'); //Show Form for create comments
+        Route::post('comment/create', 'AdminCommentController@store')->name('profile.comment.store'); //store comments into database
+        Route::get('comment/delete', 'AdminCommentController@destroy')->name('profile.comment.delete'); //delete comments
+        Route::get('comment/edit', 'AdminCommentController@edit')->name('profile.comment.edit');// show Form for Edit comments
+        Route::post('comment/edit', 'AdminCommentController@update')->name('profile.comment.update'); //store edit of comments in database
+        Route::post('comment/action/all', 'AdminCommentController@actionAll')->name('profile.comment.action.all'); //store edit of comments in database
+        Route::get('comment/search', 'AdminCommentController@search')->name('profile.comment.search'); //store edit of comments in database
+
+//   Routes For Attachment
+        Route::get('attachments', 'AttachmentController@index')->name('profile.attachment.list'); //show All attachment
+        Route::get('attachment/delete', 'AttachmentController@destroy')->name('profile.attachment.delete'); //show All attachment
 
 });
 
@@ -137,6 +180,11 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::post('/addEquipmentForUser/{equType}/{equipmentId}', 'AdslController@addEquipmentForUser')->name('addEquipmentForUser');
 
+
+//    show Single Article
+    Route::get('/article/{articleId}','ArticleController@index')->name('article.show');
+//    Comments Route
+    Route::post('/comment/store','CommentController@store')->name('comment.store');
 
 });
 

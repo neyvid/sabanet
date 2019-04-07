@@ -5,7 +5,7 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    {{ Breadcrumbs::render('profile.state.edit') }}
+{{--    {{ Breadcrumbs::render('profile.state.edit') }}--}}
 
 
 
@@ -130,7 +130,7 @@
                             <label>
                                 8192
                                 <input type="radio" name="speed" value="8192"
-                                       {{($service->night_trafic==8192)? 'checked' : ''}}  class="flat-red minimal">
+                                       {{($service->speed==8192)? 'checked' : ''}}  class="flat-red minimal">
                             </label>
 
                         </div>

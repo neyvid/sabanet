@@ -19,9 +19,6 @@ class UploadService
           'size'=>$newFile->getSize(),
           'name'=>$newFileName
         ];
-
-
-
     }
 
 }

@@ -1,0 +1,4 @@
+ErrorDocument 404 http://www.vcn.ir/404.php
+ErrorDocument 500 http://www.vcn.ir/500.php
+ErrorDocument 503 http://www.vcn.ir/503.php
+ErrorDocument 504 http://www.vcn.ir/504.php

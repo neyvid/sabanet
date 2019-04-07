@@ -24,6 +24,7 @@ class AddColumnToOrdersTable extends Migration
             $table->integer('discount_amount')->default(0);
             $table->integer('payable_amount');
             $table->integer('status');
+            $table->integer('refId')->nullable();
 
         });
     }

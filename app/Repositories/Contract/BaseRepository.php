@@ -8,9 +8,21 @@ abstract class BaseRepository
 {
     protected $model;
 
-    public function all()
+    public function all(array $eagerLoadItems = [], $orderBy = null, $orderType = null)
     {
+        if (!empty($eagerLoadItems)) {
+            return $this->model::with($eagerLoadItems)->get();
+        }
+        if ($orderBy && $orderType != null) {
+            return $this->model::orderBy($orderBy, $orderType)->get();
+        }
         return $this->model::all();
+    }
+    public function search(string $serachValue,$searchFiled)
+    {
+        return $this->model::where($searchFiled,'like','%'.$serachValue.'%')->get();
+
+
     }
     public function getAllUserWithOutThisUser()
     {
@@ -39,6 +51,14 @@ abstract class BaseRepository
         return $item->delete();
     }
 
+    public function deleteAll(array $items)
+    {
+        foreach ($items as $item) {
+            $this->delete($item);
+        }
+    }
+
+
     public function findBy(array $criteria, $single = true)
     {
         $query = $this->model::query();
@@ -51,5 +71,6 @@ abstract class BaseRepository
         return $query->get();
 
     }
+
 
 }

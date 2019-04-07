@@ -50,7 +50,7 @@
                                         <a class="dropdown-item profileLink"
                                            href="{{ route('profile.home') }}">پروفایل</a>
                                         @hasrole(\App\Models\Roles\Roles::USER)
-                                        <a class="dropdown-item ordersLink" href="#">سفارش های من</a>
+                                        <a class="dropdown-item ordersLink" href="{{route('user.orders')}}">سفارش های من</a>
                                         @endhasrole
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item logoutLink" href="{{route('dologout')}}">خروج از حساب

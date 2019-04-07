@@ -5,10 +5,12 @@
         داشبرد
         <small>کنترل پنل</small>
     </h1>
-    {{ Breadcrumbs::render('profile.state.edit') }}
 
 
+    <ol class="breadcrumb">
+        {{ Breadcrumbs::render('profile.city.edit') }}
 
+    </ol>
 @endsection
 
 @section('adminContent')
